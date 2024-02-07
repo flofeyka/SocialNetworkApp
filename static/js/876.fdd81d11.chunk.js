@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_app=self.webpackChunkmy_app||[]).push([[876],{9876:function(n,u,e){e.r(u),e.d(u,{default:function(){return c}});e(2791);var r=e(184);var c=function(n){return(0,r.jsx)("div",{children:"Music"})}}}]);
+//# sourceMappingURL=876.fdd81d11.chunk.js.map
