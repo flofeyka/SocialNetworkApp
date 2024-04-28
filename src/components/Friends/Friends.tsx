@@ -15,12 +15,12 @@ function Friends() {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(getUsers(+currentPage));
+        dispatch(getUsers({currentPage: +currentPage}));
     }, [dispatch, currentPage]);
 
     return (
-        <div className={styles.Friends}>
-            <div className={styles.Pagination}>
+        <div className="text-xl flex flex-col items-center">
+            <div className='my-2'>
                 <Pagination defaultCurrent={1} total={+totalUsersCount} onChange={(pageNumber) => {
                     dispatch(setCurrentPage(pageNumber));
                 }} current={+currentPage} pageSize={+pageSize} showSizeChanger={false}/>

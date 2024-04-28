@@ -1,6 +1,6 @@
 import {AuthAPI, ProfileAPI, SecurityAPI} from "../API/api";
 import {authType} from "../types/types";
-import {createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 const authSlice = createSlice({
     name: "auth",
@@ -24,19 +24,27 @@ const authSlice = createSlice({
         setLoginStatus: (state, action) => {
             state.isAuth = action.payload
         },
-        RegisterConfirm: (state, action) => {
-
-        },
         setCurrentPhoto: (state, action) => {
             state.currentProfileImage = action.payload
         },
         setCaptchaUrl: (state, action) => {
             state.captchaUrl = action.payload
         }
+    },
+    extraReducers(builder) {
+        builder.addCase(LoginSystem.fulfilled, (state, action) => {
+            if(action.payload.resultCode === 0) {
+                state.isAuth = true;
+                [state.userId, state.login, state.email] = [action.payload.id, action.payload.login, action.payload.email];
+            }
+        });
+        builder.addCase(getCurrentLogo.fulfilled, (state, action) => {
+            state.currentProfileImage = action.payload;
+        });
     }
 });
 
-export const {setUserData, setLoginStatus, RegisterConfirm, setCurrentPhoto, setCaptchaUrl} = authSlice.actions;
+export const {setUserData, setLoginStatus, setCurrentPhoto, setCaptchaUrl} = authSlice.actions;
 
 export const getUserData = () => async (dispatch: any) => {
     const data = await AuthAPI.getUsersData();
@@ -47,21 +55,38 @@ export const getUserData = () => async (dispatch: any) => {
     }
 }
 
-export const getCurrentLogo = () => async (dispatch: any, getState: any) => {
-    let userId = getState().AuthPage.userId;
-    let data = await ProfileAPI.getUserProfile(userId);
-    dispatch(setCurrentPhoto(data.photos));
-}
+// export const getCurrentLogo = () => async (dispatch: any, getState: any) => {
+//     let userId = getState().AuthPage.userId;
+//     let data = await ProfileAPI.getUserProfile(userId);
+//     dispatch(setCurrentPhoto(data.photos));
+// }
 
-export const LoginSystem = (email: string, password: string, rememberMe: boolean, captcha: string | null) => async (dispatch: any) => {
+export const getCurrentLogo = createAsyncThunk("auth/usersData/getCurrentLogo", async (_, {getState}: any) => {
+    const userId = getState().auth.userId;
+    const data = await ProfileAPI.getUserProfile(userId);
+    return data.photos;
+})
+
+
+export const LoginSystem = createAsyncThunk("auth/login", async (payload: any) => {
+    const { email, password, rememberMe = false, captcha = null } = payload;
     const data = await AuthAPI.Login(email, password, rememberMe, captcha);
-    if (data.resultCode === 0) {
-        await dispatch(setLoginStatus(true));
-        await dispatch(getUserData());
-    } else if (data.resultCode === 10) {
-        await dispatch(getCaptchaUrl());
+    if(data.resultCode === 0) {
+        return data;
     }
-};
+    return null;
+})
+
+
+// export const LoginSystem = (email: string, password: string, rememberMe: boolean, captcha: string | null) => async (dispatch: any) => {
+//     const data = await AuthAPI.Login(email, password, rememberMe, captcha);
+//     if (data.resultCode === 0) {
+//         await dispatch(setLoginStatus(true));
+//         await dispatch(getUserData());
+//     } else if (data.resultCode === 10) {
+//         await dispatch(getCaptchaUrl());
+//     }
+// };
 
 export const setCaptcha = (url: string | null) => ({type: setCaptchaUrl, url})
 

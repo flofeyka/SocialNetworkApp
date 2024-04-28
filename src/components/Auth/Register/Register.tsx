@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from "./Register.module.css";
 import { NavLink } from 'react-router-dom';
-import { RegisterConfirm } from "../../../redux/AuthReducer";
 import { useFormik } from 'formik';
 import * as Yup from "yup";
 import { useAppDispatch } from '../../../redux/ReduxStore';
@@ -23,12 +22,6 @@ const Register: React.FC = () => {
             repeatPassword: Yup.string().trim().required().oneOf([Yup.ref("password")])
         }),
         onSubmit: (values) => {
-            dispatch(RegisterConfirm({
-                email: values.email, 
-                login: values.login, 
-                password: values.password, 
-                repeatPassword: values.repeatPassword
-            }));
             console.log(values);
         }
     })

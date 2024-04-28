@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import '../../App.css'
-import styles from "./Nav.module.css"
+import "./Nav.css"
 import {NavLink} from 'react-router-dom'
 import user from "../../assets/Profile/usersProfileIcon.png"
 import feed from "../../assets/Navbar/feed.png"
@@ -27,52 +27,39 @@ function Navbar() {
         dispatch(getCurrentLogo());
     }, [usersPhoto, dispatch]);
 
-    return <nav className={styles.Nav}>
+    return <nav className="Nav">
         <NavLink to={"/user/" + userId}>
-            <button className={styles.ProfileBlock}>
-                <span>
-                    <img src={usersPhoto || user} alt=""/>
-                </span>
-                <span className={styles.profileBlock}>{fullName}</span>
-            </button>
+            <button><img src={usersPhoto || user} alt=""/>{fullName}</button>
         </NavLink>
         <NavLink to="/feed">
-            <button className={styles.NavButton}><img src={feed} alt="Feed"/>
-                Новости
-            </button>
+            <button><img src={feed} alt="Feed"/>Новости</button>
         </NavLink>
-        <NavLink to="/dialogs">
-            <button className={styles.NavButton} type='submit'><img
-                src={messanger} alt="Messanger"/>
-                Мессенджер
-            </button>
+        <NavLink to="/chat">
+            <button type='submit'><img src={messanger} alt="Messanger"/>Мессенджер</button>
         </NavLink>
         <NavLink to="/community">
-            <button className={styles.NavButton} type='submit'><img src={community} alt="Community"/>
+            <button type='submit'><img src={community} alt="Community"/>
                 Сообщества
             </button>
         </NavLink>
         <NavLink to="/music">
-            <button className={styles.NavButton}><img className="Music"
-                         src={music} alt="Music"/>
+            <button><img src={music} alt="Music"/>
                 Музыка
             </button>
         </NavLink>
         <NavLink to="/videos">
-            <button className={styles.NavButton}><img
-                src={video} alt="Video"/>
+            <button><img src={video} alt="Video"/>
                 Видео
             </button>
         </NavLink>
         <NavLink to={"/Friends"}>
-            <button className={styles.NavButton}>
+            <button>
                 <img src={friends} alt="Friends"/>
                 Друзья
             </button>
         </NavLink>
         <NavLink to="/settings">
-            <button className={styles.NavButton}><img
-                src={settings} alt="Settings"/>
+            <button><img src={settings} alt="Settings"/>
                 Настройки
             </button>
         </NavLink>

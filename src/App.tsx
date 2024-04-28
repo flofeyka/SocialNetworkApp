@@ -5,13 +5,15 @@ import { initiliazeApp } from "./redux/AppReducer";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import InitializationPage from "./components/Preloader/Initialization/InitializationPage.jsx";
 import store, { RootState } from "./redux/ReduxStore";
+import { NextUIProvider } from "@nextui-org/react";
+
 
 const Navbar = React.lazy(() => import("./components/Navbar/Navbar"));
 const Header = React.lazy(() => import("./components/Header/Header"));
 const Auth = React.lazy(() => import("./components/Auth/Auth"));
 const Login = React.lazy(() => import("./components/Auth/Login/Login"));
 const Register = React.lazy(() => import("./components/Auth/Register/Register"));
-const Dialogs = React.lazy(() => import("./components/Dialogs/Dialogs"));
+const Chat = React.lazy(() => import("./pages/ChatPage"));
 const Profile = React.lazy(() => import("./components/Profile/Profile"));
 const Friends = React.lazy(() => import("./components/Friends/Friends"));
 const Feed = React.lazy(() => import("./components/Feed/Feed"));
@@ -44,16 +46,16 @@ const App: React.FC = () => {
 
     }
 
-    return <div className='app-wrapper'>
+    return <div className='m-0 grid gap-2 bg-[aliceblue] min-h-screen h-[100%] grid-rows-[2fr] grid-col-[10fr]'>
         <Header />
         <Navbar />
-        <div className="app-wrapper-content">
-            <div className="app-wrapper-with-wallpaper">
+        <div className="rounded-xl min-h-[92vh] w-[60%] ml-auto mr-auto block">
+            <div className="rounded">
                 <Routes>
                     <Route path='/feed' element={<Feed />} />
                     <Route path='/user/:userId' element={<Profile />} />
-                    <Route path='/dialogs' element={<Dialogs />} />
-                    <Route path='/dialogs/:dialogId' element={<Dialogs />} />
+                    <Route path='/chat' element={<Chat />} />
+                    <Route path='/chat/:dialogId' element={<Chat />} />
                     <Route path='/community' element={<Community />} />
                     <Route path="/friends" element={<Friends />} />
                     <Route path='/videos' element={<Video />} />
@@ -69,9 +71,11 @@ const App: React.FC = () => {
 function AppProvider() {
     return <Suspense fallback={<InitializationPage />}>
         <BrowserRouter>
-            <Provider store={store}>
-                <App />
-            </Provider>
+            <NextUIProvider>
+                <Provider store={store}>
+                    <App />
+                </Provider>
+            </NextUIProvider>
         </BrowserRouter>
     </Suspense>
 

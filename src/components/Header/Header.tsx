@@ -1,11 +1,10 @@
-import React from "react";
 import "../../App.css"
-import styles from "./Header.module.css";
 import logo from "../../assets/logo.png"
-import {NavLink} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {LogOutSystem} from "../../redux/AuthReducer";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { LogOutSystem } from "../../redux/AuthReducer";
 import { RootState, useAppDispatch } from "../../redux/ReduxStore";
+import { Button } from "antd";
 
 function Header() {
     const [isAuth, login, userId] = useSelector((state: RootState) => [
@@ -15,25 +14,20 @@ function Header() {
     ]);
     const dispatch = useAppDispatch();
 
-    return <header className={styles.header}>
+    return <header className="flex bg-[white] max-h-[55px] px-10 border-solid border-black border-b-[1px] items-center">
         <NavLink to={"/"}>
-            <span className={styles.linkapp}>
-                <img src={logo} alt="logo" className={styles.logo}/><span className={styles.linkApp}>LinkApp</span>
-                </span>
+            <div className="flex">
+                <img src={logo} alt="logo" className="w-[45px] h-[45px]" /><span className="font-bold text-4xl">LinkApp</span>
+            </div>
         </NavLink>
-            <span className={styles.loginBlock}>{isAuth &&
-                <NavLink to={"/user/" + userId}>
-                    <span className={styles.UserBlock}>
-                        <span className={styles.LoginText}>
-                            {login}
-                        </span>
-                        <NavLink to={"auth"}><button onClick={() => {
-                            dispatch(LogOutSystem());
-                        }}>Log Out</button></NavLink>
-                    </span>
-                </NavLink>}
-            </span>
-        </header>
+        <span className="w-[100%]">{isAuth &&
+            <NavLink to={"/user/" + userId}>
+                <div className="flex font-bold text-2xl justify-end">
+                    {login}<NavLink to={"auth"}><Button onClick={() => dispatch(LogOutSystem())}>Log Out</Button></NavLink>
+                </div>
+            </NavLink>}
+        </span>
+    </header>
 }
 
 

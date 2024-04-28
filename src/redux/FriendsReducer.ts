@@ -15,77 +15,64 @@ const friendsSlice = createSlice({
     } as FriendsType,
     reducers: {
         setCurrentPage: (state, action: PayloadAction<number>) => {
-            return { ...state, currentPage: action.payload }
+            state.currentPage = action.payload;
         },
         ToggleIsFetching: (state, action: PayloadAction<boolean>) => {
-            return { ...state, isFetching: action.payload }
+            state.isFetching = action.payload;
         }
     }, extraReducers: (builder) => {
         builder.addCase(getUsers.pending, (state, action: PayloadAction) => {
-            return { ...state, isFetching: true }
+            state.isFetching = true;
         })
         builder.addCase(getUsers.fulfilled, (state, action) => {
-            return {
-                ...state, users: action.payload.items,
-                totalUsersCount: action.payload.totalCount,
-                isFetching: false
-            }
+            state.users = action.payload.items
+            state.totalUsersCount = action.payload.totalCount
+            state.isFetching = false
         })
         builder.addCase(Follow.pending, (state, action: PayloadAction) => {
-            return {
-                ...state, followingInProgress: [...state.followingInProgress, action.payload]
-            }
+            state.followingInProgress.push(action.payload)
         })
         builder.addCase(Follow.fulfilled, (state, action: PayloadAction<number>) => {
-            return {
-                ...state, users: [...state.users.map(user => {
-                    if (user.id === action.payload) {
-                        return { ...user, followed: true }
-                    }
-                    return user;
-                })]
+            for (let i = 0; i < state.users.length; i++) {
+                if (state.users[i].id === action.payload) {
+                    state.users[i].followed = true
+                }
             }
         })
         builder.addCase(Follow.rejected, (state, action) => {
-            return { ...state, followingInProgress: { ...state.followingInProgress.filter(id => id != action.payload) } }
+            state.followingInProgress = { ...state.followingInProgress.filter(id => id !== action.payload) }
         });
         builder.addCase(unFollow.pending, (state, action) => {
-            return {
-                ...state, followingInProgress: [...state.followingInProgress, action.payload]
-            }
+            state.followingInProgress.push(action.payload)
         })
         builder.addCase(unFollow.fulfilled, (state, action) => {
-            return {
-                ...state, users: [...state.users.map(user => {
-                    if (user.id === action.payload) {
-                        return { ...user, followed: true }
-                    }
-                    return user;
-                })]
+            for (let i = 0; i < state.users.length; i++) {
+                if (state.users[i].id === action.payload) {
+                    state.users[i].followed = false
+                }
             }
         })
         builder.addCase(unFollow.rejected, (state, action) => {
-            return { ...state, followingInProgress: { ...state.followingInProgress.filter(id => id != action.payload) } }
+            state.followingInProgress = { ...state.followingInProgress.filter(id => id !== action.payload) }
         });
     }
 });
 
 export const { setCurrentPage, ToggleIsFetching } = friendsSlice.actions;
 
-export const getUsers = createAsyncThunk('friends/getUsers', async (currentPage: number, term) => {
-    const data = await UsersAPI.getUsers(currentPage, 52, term);
-    const { items, totalCount } = data;
-    return { items, totalCount };
+export const getUsers = createAsyncThunk('friends/getUsers', async (payload: any) => {
+    const data = await UsersAPI.getUsers(payload.currentPage, 52, payload.term);
+    return data;
 })
 
 export const Follow = createAsyncThunk("/users/follow", async (userId: number) => {
     const data = await followAPI.follow(userId);
-    return data.id;
+    return data.resultCode === 0 ? userId : 0;
 });
 
 export const unFollow = createAsyncThunk("/users/unfollow", async (userId: number) => {
     const data = await followAPI.unfollow(userId)
-    return data.id;
+    return data.resultCode === 0 ? userId : null;
 })
 
 

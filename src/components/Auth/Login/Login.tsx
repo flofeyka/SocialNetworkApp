@@ -1,77 +1,27 @@
-import React from 'react';
-import styles from "./Login.module.css"
-import { Link, Navigate } from 'react-router-dom';
-import { useSelector } from "react-redux";
-import { LoginSystem } from "../../../redux/AuthReducer";
-import { useFormik } from "formik";
-import { RootState, useAppDispatch } from "../../../redux/ReduxStore";
-import * as Yup from "yup";
-import { Button, Checkbox } from '@mui/material';
+import {Button, Input} from "@nextui-org/react";
+import {useForm} from "react-hook-form";
+import {NavLink} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {LoginSystem} from "../../../redux/AuthReducer";
+import { useAppDispatch } from "../../../redux/ReduxStore";
 
-const Login: React.FC = () => {
-    const [isAuth, captchaUrl] = useSelector((state: any) => [state.AuthPage.isAuth, state.AuthPage.captchaUrl]);
-
+export default function Login() {
+    const {register, handleSubmit} = useForm()
     const dispatch = useAppDispatch();
+    const onSubmit = (data: any) => dispatch(LoginSystem({email: data.email, password: data.password}));
 
-    const formik = useFormik({
-        initialValues: {
-            email: "",
-            password: "",
-            rememberMe: false,
-            captcha: ""
-        },
-        validationSchema: Yup.object().shape({
-            email: Yup.string().required(),
-            password: Yup.string().required(),
-        }),
-        onSubmit: values => {
-            dispatch(LoginSystem(values.email, values.password, values.rememberMe, values.captcha));
-        }
-    });
-
-
-    if (isAuth) return <Navigate to={`/feed`} />
-
-    return <form onSubmit={formik.handleSubmit}>
-        <div className={styles.LoginBlock}>
-            <div className={styles.logIn}>Вход</div>
-            <div className={styles.LoginContainer}>
-                <div className={styles.InputContainer}>
-                    <div>
-                        {formik.errors.email &&
-                            <label className={styles.formSummaryError} htmlFor="email">Неправильный логин или пароль</label>
-                        }
-                        <input name={"email"} className={styles.LoginInput}
-                            placeholder={"E-mail"} onChange={formik.handleChange}
-                            value={formik.values.email}
-                        />
-                    </div>
-                    <div>
-                        <input name={"password"} className={styles.LoginInput} type={"password"}
-                            placeholder={"Password"} onChange={formik.handleChange}
-                            value={formik.values.password} />
-                    </div>
-                    <div className={styles.checkBoxContainer}>
-                        <Checkbox name={"rememberMe"} className={styles.checkBoxInput} onChange={formik.handleChange} />
-                        Запомнить вход
-                    </div>
-                    <div>
-                        {captchaUrl && <div className={styles.captchaContainer}>
-                            <img alt="" src={captchaUrl} />
-                            <input name={"captcha"} onChange={formik.handleChange}
-                                value={formik.values.captcha} />
-                        </div>
-                        }
-                        <Button variant="contained" type="submit">
-                            Войти
-                        </Button>
-                        <div className={styles.AnAccount}>Нет аккаунта? <Link to={"/register"}>Зарегистрироваться</Link></div>
-                    </div>
+    return <form onSubmit={handleSubmit(onSubmit)}>
+        <div className={"h-screen flex flex-col justify-center items-center bg-[aliceblue]"}>
+            <div className={"shadow-xl border-solid min-h-[55%] max-h-[80%] min-w-[22%] max-w-[100%] justify-center items-center flex flex-col rounded-xl border-black bg-[white] p-5"}>
+                <div className={"text-7xl font-semibold my-5"}>Вход</div>
+                <Input size={"lg"} {...register("email", {required: true})} className={"my-2"} label={"Электронная почта"}/>
+                <Input size={"lg"} {...register("password", {required: true})} className={"mb-2"} label={"Пароль"}/>
+                <Button className={"font-semibold my-2"} color={"primary"} type={"submit"} size={"lg"}>Войти</Button>
+                <div>
+                    Нет аккаунта? <NavLink className={"text-primary-500 font-bold"} to={"/register"}>Создайте аккаунт</NavLink>
                 </div>
             </div>
         </div>
-
     </form>
-};
 
-export default Login;
+}

@@ -122,8 +122,8 @@ export type friendsItemType = {
     name: string
     status: string | null
     photos: {
-        small: string | null
-        large: string | null
+        small: string
+        large: string
     }
     followed: boolean
 }

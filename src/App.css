@@ -43,13 +43,3 @@ body::-webkit-scrollbar-thumb {
     background-color: darkgray;
     border-radius: 20px;
 }
-
-.AuthContainer {
-    display: flex;
-    background: aliceblue;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-}
