@@ -1,7 +1,7 @@
-import React, { FC, memo, useState } from 'react';
+import { FC, memo, useState } from 'react';
 import styles from "./AnswerItem.module.css";
 import user from "../../../../../../assets/Profile/usersProfileIcon.png";
-import { acceptAnswerChanges, deleteAnswer } from "../../../../../../redux/ProfileReducer";
+import { acceptAnswerChanges } from "../../../../../../redux/ProfileReducer";
 import { useDispatch } from "react-redux";
 import AnswerInterections from "./AnswerInterectionsBlock/AnswerInterections";
 import { answersType } from "../../../../../../types/types";
@@ -17,8 +17,8 @@ type Props = {
 }
 
 const AnswerItem: FC<Props> = ({ answer, currentUserId, answerMode, postId, setAnswerMode }) => {
-    let [editMode, setEditMode] = useState(false);
-    let [answerMessage, setAnswerMessage] = useState(answer.answerMessage);
+    const [editMode, setEditMode] = useState(false);
+    const [answerMessage, setAnswerMessage] = useState(answer.answerMessage);
     const dispatch = useDispatch();
 
     return <div key={answer.id} className={styles.answerItem}>
@@ -30,7 +30,7 @@ const AnswerItem: FC<Props> = ({ answer, currentUserId, answerMode, postId, setA
             <div className={styles.fullName}>
                 {answer.answerName}
                 <span className={styles.detailsBlock}>
-                    <button className={styles.details}><img src={details} /></button>
+                    <button className={styles.details}><img src={details} alt="details"/></button>
                 </span>
             </div>
             {editMode && currentUserId === answer.userId ? <div>

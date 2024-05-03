@@ -1,9 +1,8 @@
 import { Button, Checkbox, Input, Modal, ModalContent } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { LoginSystem } from "../../../redux/AuthReducer";
-import { RootState, useAppDispatch } from "../../../redux/ReduxStore";
+import { LoginSystem } from "../../redux/AuthReducer";
+import { RootState, useAppDispatch } from "../../redux/ReduxStore";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 

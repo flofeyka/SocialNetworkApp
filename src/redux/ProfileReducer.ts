@@ -33,7 +33,7 @@ const profileSlice = createSlice({
             })
         },
         answerComment: (state, action) => {
-            let { id, name, image, userId, message, isLiked, likesCount } = action.payload
+            let { id, name, image, userId, message } = action.payload
             state.PostItem.forEach(post => {
                 if (post.id === id) {
                     post.answers.push({
@@ -41,10 +41,10 @@ const profileSlice = createSlice({
                         postId: id,
                         answerName: name,
                         usersImage: image,
-                        userId: userId,
+                        userId,
                         answerMessage: message,
-                        isLiked: isLiked,
-                        likesCount: likesCount
+                        isLiked: false,
+                        likesCount: 0
                     });
                 }
                 ;
