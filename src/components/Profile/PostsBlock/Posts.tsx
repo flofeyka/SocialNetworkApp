@@ -14,8 +14,7 @@ const Posts: FC = () => {
     const PostElem = [...postItem].reverse().map(post => <PostItem post={post} openPost={openPost}
         setOpenPost={(openPost: boolean) => { setOpenPost(openPost) }} />);
     return <div>
-        <AddingNewPost setOpenPost={(openPost: boolean) => {setOpenPost(openPost)
-        }} openPost={openPost} />
+        <AddingNewPost />
         <div>
             {PostElem}
         </div>
