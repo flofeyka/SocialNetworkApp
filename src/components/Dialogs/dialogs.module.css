@@ -1,7 +1,0 @@
-.dialogs {
-    display: grid;
-    grid-template-columns: 2fr 10fr;
-    margin: 10px;
-    height: 80%;
-    box-shadow: white;
-}

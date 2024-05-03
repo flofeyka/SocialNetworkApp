@@ -1,14 +1,14 @@
 import styles from "./AboutMe.module.css";
 import { FC, useState } from "react";
-import closer from "./../../../../assets/Closer.png"
 import { NavLink } from "react-router-dom";
 import AboutMeEdit from "./AboutMeEdit/AboutMeEdit";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/ReduxStore";
+import { Button, Modal, ModalContent, useDisclosure } from "@nextui-org/react";
 
 
 
-const AboutMeBlock: FC<{LinkedUserId: number}> = ({ LinkedUserId }) => {
+const AboutMeBlock: FC<{ LinkedUserId: number }> = ({ LinkedUserId }) => {
     const [fullName, aboutMe, lookingForAJob, lookingForAJobDescription, contacts,
         currentUserId] = useSelector((state: RootState) => [
             state.ProfilePage.profileData.fullName,
@@ -19,28 +19,20 @@ const AboutMeBlock: FC<{LinkedUserId: number}> = ({ LinkedUserId }) => {
             state.AuthPage.userId
         ]);
 
-    const [deploy, setDeploy] = useState<boolean>(false);
+    const { isOpen, onOpen, onClose } = useDisclosure();
     const [editMode, setEditMode] = useState<boolean>(false);
 
 
     return <div className={styles.AboutMeBlock}>
         <div>
-            <button className={styles.aboutMeButton} onClick={() => {
-                !deploy ? setDeploy(true) : setDeploy(false);
+            <Button className="flex" onClick={() => {
+                !isOpen ? onOpen() : onClose();
             }}>Основные данные
-            </button>
-            {deploy && <div className={styles.aboutMeContainer}>
-                <div className={styles.aboutMe}>
-                    <div className={styles.closeBlock}>
-                        <button className={styles.closeButton} onClick={() => {
-                            setDeploy(false);
-                            setEditMode(false);
-                        }}>
-                            <img className={styles.closer} src={closer} alt="" />
-                        </button>
-                    </div>
-                    {!editMode && <div className={styles.Description}>
-                        <div>
+            </Button>
+            <Modal isOpen={isOpen} onClose={onClose} size="xl" className="p-4">
+                <ModalContent>
+                    {!editMode && <div>
+                        <div className="mb-4">
                             <h3>Основные данные</h3>
                             <li><b>Имя</b>: {fullName}</li>
                             <li><b>Пользовательская ссылка</b>: <NavLink
@@ -54,32 +46,30 @@ const AboutMeBlock: FC<{LinkedUserId: number}> = ({ LinkedUserId }) => {
                         </div>
                         }
                         <div className={styles.contacts}>
-                            {Object.keys(contacts).every(item => !item) && <div className={styles.otherSocial}>
-                                <h3>Другие социальные сети</h3>
-                                {Object.keys(contacts).map(item => {
-                                    if (contacts[item] != null) return <li key={item}><b>{item}</b>: <a
-                                        href={"https://" + contacts[item]}>{contacts[item]}</a></li>
-                                    return null;
-                                })}
-                            </div>
-                            }
+                            {/* {Object.keys(contacts).every(item => !item) && <div className={styles.otherSocial}>
+                                            <h3>Другие социальные сети</h3>
+                                            {Object.keys(contacts).map(item => {
+                                                if (contacts[item] != null) return <li key={item}><b>{item}</b>: <a
+                                                    href={"https://" + contacts[item]}>{contacts[item]}</a></li>
+                                                return null;
+                                            })}
+                                        </div>
+                                        } */}
                         </div>
-                        {currentUserId === LinkedUserId && <span>
-                            <button onClick={() => {
-                                setEditMode(true)
-                            }}>Редактировать
-                            </button>
-                        </span>
+                        {currentUserId === LinkedUserId && <Button className="mt-3" onClick={() => {
+                            setEditMode(true)
+                        }}>Редактировать
+                        </Button>
                         }
 
                     </div>}
-                    {editMode && <AboutMeEdit contacts={contacts} fullName={fullName} aboutMe={aboutMe} lookingForAJob={lookingForAJob} 
-                    lookingForAJobDescription={lookingForAJobDescription} currentUserId={currentUserId} LinkedUserId={LinkedUserId}
+                    {editMode && <AboutMeEdit contacts={contacts} fullName={fullName} aboutMe={aboutMe} lookingForAJob={lookingForAJob}
+                        lookingForAJobDescription={lookingForAJobDescription} currentUserId={currentUserId} LinkedUserId={LinkedUserId}
                         editMode={editMode} setEditMode={(editMode: boolean) => {
                             setEditMode(editMode)
                         }} />}
-                </div>
-            </div>}
+                </ModalContent>
+            </Modal>
         </div>
     </div>
 }
