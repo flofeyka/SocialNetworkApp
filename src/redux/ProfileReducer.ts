@@ -20,15 +20,15 @@ const profileSlice = createSlice({
     } as profileType,
     reducers: {
         addPost: (state, action) => {
-            let { userId, fullName, currentProfileImage, NewPostMessage, likesCount, isLiked } = action.payload
+            let { userId, fullName, currentProfileImage, NewPostMessage } = action.payload
             state.PostItem.push({
                 id: state.PostItem.length + 1,
                 userId: userId,
                 fullName: fullName,
                 usersPhoto: currentProfileImage,
                 postMessage: NewPostMessage,
-                likesCount: likesCount,
-                isLiked: isLiked,
+                likesCount: 0,
+                isLiked: false,
                 answers: []
             })
         },
