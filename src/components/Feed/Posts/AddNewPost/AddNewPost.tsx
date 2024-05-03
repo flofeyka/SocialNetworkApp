@@ -5,6 +5,9 @@ import { addPostFeed } from "../../../../redux/FeedReducer";
 import { RootState, useAppDispatch } from "../../../../redux/ReduxStore";
 import { useFormik } from 'formik';
 import * as Yup from "yup";
+import { TextareaAutosize } from '@mui/material';
+import { Button } from '@nextui-org/react';
+
 
 function AddNewPost() {
     const [userId, usersPhoto, fullName] = useSelector((state: RootState) => [
@@ -22,7 +25,7 @@ function AddNewPost() {
         }),
         onSubmit: (values: any) => {
             dispatch(addPost({
-                userId: userId, fullName: fullName, currentProfileImage: usersPhoto,
+                userId, fullName, currentProfileImage: usersPhoto,
                 NewPostMessage: values.NewPostMessage, likesCount: 0, isLiked: false
             }));
             dispatch(addPostFeed({ fullName: fullName, usersPhoto: usersPhoto, postText: values.NewPostMessage, userId: userId }));
@@ -34,13 +37,13 @@ function AddNewPost() {
     return <form onSubmit={formik.handleSubmit}>
         <div className={styles.NewPostBlock}>
             <span>
-                <textarea name={"NewPostMessage"} className={styles.NewPost}
+                <TextareaAutosize name={"NewPostMessage"} className={styles.NewPost}
                     placeholder='Что у вас нового?' value={formik.values.NewPostMessage} onChange={formik.handleChange}/>
             </span>
             <span>
-                <button className={styles.addNewPost}>
+                <Button type="submit" variant="faded" className="h-[30px] bg-white flex m-[5px]">
                     Отправить
-                </button>
+                </Button>
             </span>
         </div>
     </form>

@@ -2,6 +2,7 @@ import React from 'react';
 import styles from "./PostInterections.module.css";
 import {setLike} from "../../../../../redux/ProfileReducer";
 import {useAppDispatch} from "../../../../../redux/ReduxStore";
+import { Button } from '@nextui-org/react';
 
 type Props = {
     postId: number
@@ -16,18 +17,18 @@ function PostInterections(props: Props) {
     return <div className={styles.interectionsBlock}>
         <span>
             <span>
-                <button className={styles.isLikedButton} onClick={() => {
+                <Button size="sm" className={styles.isLikedButton} onClick={() => {
                     dispatch(setLike(props.postId))
-                }}>Лайк {props.likesCount}</button>
+                }}>Лайк {props.likesCount}</Button>
             </span>
         </span>
         <span>
-            <button onClick={() => {
+            <Button size="sm" variant="faded" onClick={() => {
                 props.setAnswerMode(!props.answerMode ? true : false)
-            }}>Ответить</button>
+            }}>Ответить</Button>
         </span>
         <span>
-            <button>Поделиться</button>
+            <Button size="sm">Поделиться</Button>
         </span>
     </div>
 }

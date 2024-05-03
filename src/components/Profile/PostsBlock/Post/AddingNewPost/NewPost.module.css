@@ -4,7 +4,8 @@
 }
 
 .newpost {
-    height: 30px;
+    height: 40px;
+    border: 1px solid black;
     width: 500px;
     font-size: 25px;
     border-radius: 10px;
@@ -14,6 +15,7 @@
     overflow: hidden;
     align-items: center;
     justify-content: center;
+    max-height: 300px;
 }
 
 .posting {
@@ -26,7 +28,7 @@
     font-family: Roboto, Verdana, Tahoma, sans;
     border-radius: 10px;
     background-color: white;
-    height:35px;
+    height:40px;
     margin-left: 5px;
 }
 

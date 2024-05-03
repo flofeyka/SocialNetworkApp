@@ -4,33 +4,9 @@
     width: 190px;
     height: 100%;
     display: inline-block;
-    position: fixed;
     z-index: 99;
-    bottom: -55px;
 }
 
-.ProfileBlock {
-    grid-area: b;
-    border: none;
-    outline: none;
-    display: inline-block;
-    text-align: left;
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 15px;
-    font-family: Roboto, Verdana, Tahoma, sans;
-    padding: 5px 15px;
-    border-radius: 20px;
-    color: black;
-    margin: 5px;
-    background: white;
-    height: 50px;
-    width: 94%;
-    font-weight: 600;
-    img {
-        border-radius: 100%;
-    }
-}
 
 
 .Nav button {
@@ -47,7 +23,7 @@
     padding: 5px 15px;
     border-radius: 20px;
     color: black;
-    margin: 5px;
+    margin: 0 5px 5px 5px;
     background: none;
     height: 50px;
     width: 94%;
@@ -58,11 +34,6 @@
     background-repeat: no-repeat;
     width: 28px;
     margin-right: 13px;
-}
-
-.profileBlock {
-    display: inline-block;
-    vertical-align: 6px;
 }
 
 

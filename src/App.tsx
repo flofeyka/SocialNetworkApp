@@ -46,10 +46,10 @@ const App: React.FC = () => {
 
     }
 
-    return <div className='m-0 grid gap-2 bg-[aliceblue] min-h-screen h-[100%] grid-rows-[2fr] grid-col-[10fr]'>
+    return <div className='app-wrapper'>
         <Header />
         <Navbar />
-        <div className="rounded-xl min-h-[92vh] w-[60%] ml-auto mr-auto block">
+        <div className="app-wrapper-content">
             <div className="rounded">
                 <Routes>
                     <Route path='/feed' element={<Feed />} />

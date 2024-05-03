@@ -1,4 +1,4 @@
-import {getUserData} from "./AuthReducer";
+import {getCurrentLogo, getUserData} from "./AuthReducer";
 import {createSlice} from "@reduxjs/toolkit";
 
 type InitialStateType = {
@@ -22,6 +22,8 @@ export const {setInitialized} = appSlice.actions
 export const initiliazeApp: any = () => async (dispatch : any) => {
     let promises = [];
     promises.push(dispatch(getUserData()));
+    promises.push(dispatch(getCurrentLogo()));
+    
     await Promise.all(promises);
     dispatch(setInitialized());
 }

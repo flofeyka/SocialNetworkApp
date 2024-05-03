@@ -29,7 +29,7 @@ function Navbar() {
 
     return <nav className="Nav">
         <NavLink to={"/user/" + userId}>
-            <button><img src={usersPhoto || user} alt=""/>{fullName}</button>
+            <button><img className='rounded-full' src={usersPhoto || user} alt=""/>{fullName}</button>
         </NavLink>
         <NavLink to="/feed">
             <button><img src={feed} alt="Feed"/>Новости</button>

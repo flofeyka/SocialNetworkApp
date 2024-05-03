@@ -10,7 +10,7 @@ type Props = {
     user: friendsItemType
 }
 
-function FriendsItem({ user, ...props }: Props) {
+export default function FriendsItem({ user, ...props }: Props) {
     const dispatch = useAppDispatch();
 
     return <div className="flex w-[650px] justify-center bg-white p-4 rounded-2xl shadow-xl mb-2">
@@ -43,5 +43,3 @@ function FriendsItem({ user, ...props }: Props) {
         </div>
     </div>
 }
-
-export default FriendsItem;

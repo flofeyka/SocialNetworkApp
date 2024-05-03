@@ -1,58 +1,20 @@
-import React from 'react';
-import styles from "./Register.module.css";
-import { NavLink } from 'react-router-dom';
-import { useFormik } from 'formik';
-import * as Yup from "yup";
-import { useAppDispatch } from '../../../redux/ReduxStore';
+import {Button, Input} from "@nextui-org/react";
+import {NavLink} from "react-router-dom";
+import {useForm} from "react-hook-form";
 
-const Register: React.FC = () => {
-    const dispatch = useAppDispatch();
+export default function Register() {
+    const {register, handleSubmit} = useForm();
+    const onSubmit = (data: any) => console.log(data);
 
-    const formik = useFormik({
-        initialValues: {
-            email: "",
-            login: "",
-            password: "",
-            repeatPassword: ""
-        },
-        validationSchema: Yup.object().shape({
-            email: Yup.string().trim().required().email(),
-            login: Yup.string().trim().required(),
-            password: Yup.string().trim().required(),
-            repeatPassword: Yup.string().trim().required().oneOf([Yup.ref("password")])
-        }),
-        onSubmit: (values) => {
-            console.log(values);
-        }
-    })
-
-    return <form onSubmit={formik.handleSubmit}>
-        <div className={styles.RegisterBlock}>
-            <div className={styles.SignIn}>Регистрация</div>
-            <div className={styles.RegisterContainer}>
-                <div>
-                    <input name={"email"} type="email" placeholder='Электронная почта'
-                        value={formik.values.email} onChange={formik.handleChange} />
-                </div>
-                <div>
-                    <input name={"login"} type="text" placeholder='Логин'
-                        value={formik.values.login} onChange={formik.handleChange} />
-                </div>
-                <div>
-                    <input name={"password"} type="password" placeholder='Пароль'
-                        value={formik.values.password} onChange={formik.handleChange} />
-                </div>
-                <div>
-                    <input name={"repeatPassword"} type="password" placeholder='Повторите пароль'
-                        value={formik.values.repeatPassword} onChange={formik.handleChange} />
-                </div>
-                <div>
-                    <button>Зарегистрироваться</button>
-                </div>
-                <div className={styles.AnAccount}>Уже есть аккаунт? <NavLink to="/login">Авторизоваться</NavLink></div>
+    return <form onSubmit={handleSubmit(onSubmit)}>
+        <div className={"h-screen flex flex-col items-center justify-center bg-[aliceblue]"}>
+            <div className={"min-h-[40vh] max-h-[80vh] min-w-[15vw] max-w-[100vw] shadow-2xl rounded-xl flex flex-col items-center justify-center bg-white p-4"}>
+                <div className={"font-semibold text-6xl flex justify-center my-5"}>Регистрация</div>
+                <Input {...register("email", {required: "Это поле обязательно"})} className={"mt-4"} size={"lg"} label={"Электронная почта"}/>
+                <Input {...register("password", {required: "Это поле обязательно"})} className={"mt-2.5"} size={"lg"} label={"Пароль"}/>
+                <Button type={"submit"} className={"my-5 font-bold"} size={"lg"} color={"primary"}>Создать аккаунт</Button>
+                <div>Уже есть аккаунт? <NavLink className={"text-primary-500 font-bold"} to={"/login"}>Войдите</NavLink></div>
             </div>
         </div>
     </form>
-};
-
-export default Register;
+}

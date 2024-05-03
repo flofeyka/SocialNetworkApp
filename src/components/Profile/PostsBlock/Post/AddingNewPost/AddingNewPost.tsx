@@ -2,12 +2,16 @@ import React from 'react';
 import styles from "./NewPost.module.css";
 import {addPost} from "../../../../../redux/ProfileReducer";
 import {useFormik} from "formik";
-import {useAppDispatch} from "../../../../../redux/ReduxStore";
+import {RootState, useAppDispatch} from "../../../../../redux/ReduxStore";
 import * as Yup from "yup";
+import { Button } from '@nextui-org/react';
+import { useSelector } from 'react-redux';
+import { TextareaAutosize } from '@mui/material';
 
 
 function AddingNewPost(props: any) {
     const dispatch = useAppDispatch();
+    const [currentFullName, currentProfileImage] = useSelector((state: RootState) => [state.AuthPage.login, state.AuthPage.currentProfileImage]);
 
     let formik = useFormik({
         initialValues: {
@@ -18,8 +22,8 @@ function AddingNewPost(props: any) {
         }),
         onSubmit: values => {
             dispatch(addPost({
-                userId: props.currentUserId, fullName: props.currentFullName,
-                currentProfileImage: props.currentProfileImage, NewPostMessage: values.NewPostMessage,
+                userId: props.currentUserId, fullName: currentFullName,
+                currentProfileImage: currentProfileImage.small, NewPostMessage: values.NewPostMessage,
                 likesCount: 0, isLiked: false
             }));
             values.NewPostMessage = "";
@@ -28,14 +32,13 @@ function AddingNewPost(props: any) {
 
 
     return <form onSubmit={formik.handleSubmit} className={styles.newPostContainer}>
-        <span>
-            <textarea name={"NewPostMessage"} className={styles.newpost} placeholder={"Что у вас нового?"}
+        <div className='flex items-center mb-2'>
+            <TextareaAutosize name={"NewPostMessage"} className={styles.newpost} placeholder={"Что у вас нового?"}
                    onChange={formik.handleChange}
                    value={formik.values.NewPostMessage}/>
-        </span>
-        <span>
-            <button className={styles.posting}>Отправить</button>
-        </span>
+            <Button type="submit" variant="faded" className="bg-white mx-3">Отправить</Button>
+        </div>
+
     </form>
 }
 

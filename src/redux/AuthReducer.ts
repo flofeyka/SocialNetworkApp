@@ -37,6 +37,10 @@ const authSlice = createSlice({
                 state.isAuth = true;
                 [state.userId, state.login, state.email] = [action.payload.id, action.payload.login, action.payload.email];
             }
+
+            if(action.payload.resultCode === 10) {
+                state.captchaUrl = action.payload.captchaUrl;
+            }
         });
         builder.addCase(getCurrentLogo.fulfilled, (state, action) => {
             state.currentProfileImage = action.payload;
@@ -62,19 +66,27 @@ export const getUserData = () => async (dispatch: any) => {
 // }
 
 export const getCurrentLogo = createAsyncThunk("auth/usersData/getCurrentLogo", async (_, {getState}: any) => {
-    const userId = getState().auth.userId;
+    const userId = getState().AuthPage.userId;
     const data = await ProfileAPI.getUserProfile(userId);
     return data.photos;
 })
 
 
-export const LoginSystem = createAsyncThunk("auth/login", async (payload: any) => {
+
+export const LoginSystem = createAsyncThunk("auth/login", async (payload: any, {dispatch}) => {
     const { email, password, rememberMe = false, captcha = null } = payload;
     const data = await AuthAPI.Login(email, password, rememberMe, captcha);
     if(data.resultCode === 0) {
         return data;
+    } else if (data.resultCode === 10) {
+        dispatch(getCaptchaUrl());
     }
     return null;
+})
+
+export const getCaptchaUrl = createAsyncThunk("auth/getCaptchaUrl", async (_, {dispatch}) => {
+    const data = await SecurityAPI.getCaptcha();
+    return data.url;
 })
 
 
@@ -89,13 +101,6 @@ export const LoginSystem = createAsyncThunk("auth/login", async (payload: any) =
 // };
 
 export const setCaptcha = (url: string | null) => ({type: setCaptchaUrl, url})
-
-export const getCaptchaUrl = () => async (dispatch: any) => {
-    const data = await SecurityAPI.getCaptcha();
-    const captchaUrl = data.url;
-
-    dispatch(setCaptcha(captchaUrl));
-}
 
 export const LogOutSystem = () => async (dispatch: any) => {
     let data = await AuthAPI.LogOut();
