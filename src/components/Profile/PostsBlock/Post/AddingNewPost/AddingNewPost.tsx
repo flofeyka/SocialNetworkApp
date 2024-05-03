@@ -32,14 +32,13 @@ function AddingNewPost(props: any) {
 
 
     return <form onSubmit={formik.handleSubmit} className={styles.newPostContainer}>
-        <span>
+        <div className='flex items-center mb-2'>
             <TextareaAutosize name={"NewPostMessage"} className={styles.newpost} placeholder={"Что у вас нового?"}
                    onChange={formik.handleChange}
                    value={formik.values.NewPostMessage}/>
-        </span>
-        <span>
             <Button type="submit" variant="faded" className="bg-white mx-3">Отправить</Button>
-        </span>
+        </div>
+
     </form>
 }
 

@@ -25,7 +25,7 @@ function AddNewPost() {
         }),
         onSubmit: (values: any) => {
             dispatch(addPost({
-                userId: userId, fullName: fullName, currentProfileImage: usersPhoto,
+                userId, fullName, currentProfileImage: usersPhoto,
                 NewPostMessage: values.NewPostMessage, likesCount: 0, isLiked: false
             }));
             dispatch(addPostFeed({ fullName: fullName, usersPhoto: usersPhoto, postText: values.NewPostMessage, userId: userId }));

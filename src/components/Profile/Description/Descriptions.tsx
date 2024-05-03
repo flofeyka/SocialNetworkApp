@@ -20,14 +20,15 @@ const Descriptions: FC<{ LinkedUserId: number }> = ({ LinkedUserId }) => {
 
     const [editMode, setEditMode] = useState<boolean>(false);
     const [status, setStatus] = useState<string>(profileStatus);
+    console.log(status);
 
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(getStatus(+LinkedUserId));
+        dispatch(getStatus(LinkedUserId));
         dispatch(getFollowingData(+LinkedUserId));
         dispatch(getProfile(+LinkedUserId));
-    }, [LinkedUserId, dispatch]);
+    }, [LinkedUserId, profileStatus, dispatch]);
 
 
     return <div className={styles.desc}>
