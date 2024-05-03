@@ -2,15 +2,19 @@ import React, {useState} from "react";
 import styles from "./Settings.module.css"
 import user from "./../../assets/Profile/usersProfileIcon.png"
 import {setNewCurrentUsersPhoto} from "../../redux/AuthReducer";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../redux/ReduxStore";
+import {useSelector} from "react-redux";
+import {RootState, useAppDispatch} from "../../redux/ReduxStore";
+import { Input } from "@nextui-org/react";
+import { setStatusProfile } from "../../redux/ProfileReducer";
 
 
 const Settings: React.FC = () => {
-    const currentUserPhoto = useSelector((state: RootState) => state.AuthPage.currentProfileImage.large)
+    const [currentUserPhoto, status] = useSelector((state: RootState) => [state.AuthPage.currentProfileImage.large, state.ProfilePage.status])
 
     const [photo, setPhoto] = useState<File>();
-    const dispatch: any = useDispatch();
+    const dispatch = useAppDispatch();
+    const [newStatus, setNewStatus] = useState<string>(status)
+
 
     function getCurrentPhoto(event: any) {
         setPhoto(event.target.files)
@@ -36,7 +40,7 @@ const Settings: React.FC = () => {
                 FullName: <input/>
             </div>
             <div>
-                Status: <input/>
+                Status: <Input placeholder={status} value={newStatus} onChange={(e) => setNewStatus(e.target.value)} onBlur={() => dispatch(setStatusProfile(newStatus))}/>
             </div>
             <div>
                 Nickname: flofeyka <button>Change nickname</button>

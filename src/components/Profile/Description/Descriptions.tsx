@@ -20,15 +20,13 @@ const Descriptions: FC<{ LinkedUserId: number }> = ({ LinkedUserId }) => {
 
     const [editMode, setEditMode] = useState<boolean>(false);
     const [status, setStatus] = useState<string>(profileStatus);
-    console.log(status);
-
     const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(getStatus(LinkedUserId));
         dispatch(getFollowingData(+LinkedUserId));
         dispatch(getProfile(+LinkedUserId));
-    }, [LinkedUserId, profileStatus, dispatch]);
+    }, [LinkedUserId, isFollowing, profileStatus, dispatch]);
 
 
     return <div className={styles.desc}>
@@ -48,9 +46,9 @@ const Descriptions: FC<{ LinkedUserId: number }> = ({ LinkedUserId }) => {
                 {!editMode ? <div onDoubleClick={() => {
                     setEditMode(LinkedUserId === currentUserId);
                 }} className={styles.status}>
-                    {status}
+                    {profileStatus}
                 </div> : <div>
-                    <input className={styles.inputStatus} onChange={event => { setStatus(event.target.value); }}
+                    <input className={styles.inputStatus} placeholder={profileStatus} onChange={event => setStatus(event.target.value)}
                         autoFocus={true} onBlur={() => {
                             setEditMode(false);
                             dispatch(setStatusProfile(status));

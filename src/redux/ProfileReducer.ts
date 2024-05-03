@@ -1,6 +1,6 @@
 import { ProfileAPI, followAPI } from "../API/api";
 import { postItemType, profileDataType, profileType } from "../types/types";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const profileSlice = createSlice({
     name: "profile",
@@ -91,33 +91,33 @@ const profileSlice = createSlice({
             });
         }
     }, extraReducers: (builder) => {
-        builder.addCase(getProfile.fulfilled, (state, action) => {
+        builder.addCase(getProfile.fulfilled, (state, action: PayloadAction<profileDataType>) => {
             state.profileData = action.payload;
         })
-        builder.addCase(setStatusProfile.fulfilled, (state, action) => {
+        builder.addCase(setStatusProfile.fulfilled, (state, action: PayloadAction<string | null>) => {
             state.status = action.payload;
         })
-        builder.addCase(getFollowingData.fulfilled, (state, action) => {
+        builder.addCase(getFollowingData.fulfilled, (state, action: PayloadAction<boolean>) => {
             state.isFollowing = action.payload;
         })
-        builder.addCase(getStatus.fulfilled, (state, action) => {
+        builder.addCase(getStatus.fulfilled, (state, action: PayloadAction<string | null>) => {
             action.payload ? state.status = action.payload : state.status = "Статус отсутствует :)";
         })
-        builder.addCase(Follow.pending, (state, action) => {
+        builder.addCase(Follow.pending, (state, action: PayloadAction) => {
             state.followingInProgress = true;
         })
-        builder.addCase(Follow.fulfilled, (state, action) => {
+        builder.addCase(Follow.fulfilled, (state, action: PayloadAction) => {
             state.isFollowing = true;
             state.followingInProgress = false;
         })
-        builder.addCase(unFollow.pending, (state, action) => {
+        builder.addCase(unFollow.pending, (state, action: PayloadAction) => {
             state.followingInProgress = true;
         })
-        builder.addCase(unFollow.fulfilled, (state, action) => {
+        builder.addCase(unFollow.fulfilled, (state, action: PayloadAction) => {
             state.isFollowing = false;
             state.followingInProgress = false;
         })
-        builder.addCase(editProfile.fulfilled, (state, action) => {
+        builder.addCase(editProfile.fulfilled, (state, action:PayloadAction<profileDataType>) => {
             state.profileData = action.payload;
         })
     }
@@ -136,7 +136,11 @@ export const getProfile = createAsyncThunk('profile/getProfile', async (userId: 
 });
 
 export const setStatusProfile = createAsyncThunk('profile/setStatus', async (status: string | null) => {
-    return await ProfileAPI.setProfileStatus(status);
+    const data = await ProfileAPI.setProfileStatus(status);
+    if(data.resultCode === 0) {
+        return status;
+    }
+    return null;
 })
 
 export const getFollowingData = createAsyncThunk('profile/getFollowingData', async (userId: number) => {
