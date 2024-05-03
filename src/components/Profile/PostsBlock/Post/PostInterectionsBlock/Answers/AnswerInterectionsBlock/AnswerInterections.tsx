@@ -1,31 +1,32 @@
-import styles from "./AnswerInterections.module.css";
 import {setLikeAnswer} from "../../../../../../../redux/ProfileReducer";
-import React from "react";
 import {useDispatch} from "react-redux";
+import { Button } from "@nextui-org/react";
+import "../../Interections.css"
+import { FC } from "react";
 
 type Props = {
-    answerId: number
-    postId: number
-    likesCount: number
-    answerMode: boolean
-    setAnswerMode: any
+    answerId: number;
+    postId: number;
+    likesCount: number;
+    answerMode: boolean;
+    setAnswerMode: any;
 }
 
-function AnswerInterections(props: Props) {
+const AnswerInterections: FC<Props> = (props) => {
     const dispatch = useDispatch();
-    return <div className={styles.answerInterectionsBlock}>
+    return <div className="interectionsBlock">
         <span>
-            <button onClick={() => {
+            <Button size="sm" onClick={() => {
                 dispatch(setLikeAnswer({answerId: props.answerId, postId: props.postId}));
-            }}>Лайк {props.likesCount}</button>
+            }}>Лайк {props.likesCount}</Button>
         </span>
         <span>
-            <button onClick={() => {
-                !props.answerMode ? props.setAnswerMode(true) : props.setAnswerMode(false)
-            }}>Ответить</button>
+            <Button size="sm" onClick={() => {
+                !props.answerMode ? props.setAnswerMode(true) : props.setAnswerMode(false);
+            }}>Ответить</Button>
         </span>
         <span>
-            <button>Поделиться</button>
+            <Button size="sm">Поделиться</Button>
         </span>
     </div>
 }

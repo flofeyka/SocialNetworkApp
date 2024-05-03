@@ -1,5 +1,4 @@
-import React from 'react'
-import styles from "./Community.module.css"
+import styles from "./Community.module.css";
 import {useSelector} from "react-redux";
 import {setFollow} from "../../redux/CommunityReducer";
 import CommunityItem from "./CommunityItem/CommunityItem";

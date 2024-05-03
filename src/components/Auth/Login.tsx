@@ -6,19 +6,30 @@ import { RootState, useAppDispatch } from "../../redux/ReduxStore";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 
+type FormValues = {
+    email: string;
+    password: string;
+    rememberMe: boolean;
+    captcha: string;
+}
+
 export default function Login() {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm<FormValues>();
     const captchaUrl = useSelector((state: RootState) => state.AuthPage.captchaUrl);
     const [openned, setOpen] = useState<boolean>(false);
-    if(captchaUrl) {
+
+    if (captchaUrl) {
         setOpen(true);
     }
+    
     const dispatch = useAppDispatch();
-    const onSubmit = (data: any) => dispatch(LoginSystem({ email: data.email, password: data.password, 
-        rememberMe: data.rememberMe, captcha: data.captcha }));
+    const onSubmit = handleSubmit((data) => dispatch(LoginSystem({
+        email: data.email, password: data.password,
+        rememberMe: data.rememberMe, captcha: data.captcha
+    })));
 
 
-    return <form onSubmit={handleSubmit(onSubmit)}>
+    return <form onSubmit={onSubmit}>
         <div className={"h-screen flex flex-col justify-center items-center bg-[aliceblue]"}>
             <div className={"shadow-xl border-solid min-h-[55%] max-h-[80%] min-w-[22%] max-w-[100%] justify-center items-center flex flex-col rounded-xl border-black bg-[white] p-5"}>
                 <div className={"text-7xl font-semibold my-5"}>Вход</div>
@@ -36,9 +47,9 @@ export default function Login() {
                     <Modal isOpen={openned} onOpenChange={setOpen}>
                         <ModalContent>
                             <div>
-                                <img src={captchaUrl || ""} alt="Captcha"/>
+                                <img src={captchaUrl || ""} alt="Captcha" />
                             </div>
-                            <Input {...register("captcha", {})}/>
+                            <Input {...register("captcha", {})} />
                         </ModalContent>
                     </Modal>
                 </div>
