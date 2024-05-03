@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from "./PostInterections.module.css";
-import {setLike} from "../../../../../redux/ProfileReducer";
-import {useAppDispatch} from "../../../../../redux/ReduxStore";
+import "./Interections.css";
+import { setLike } from "../../../../../redux/ProfileReducer";
+import { useAppDispatch } from "../../../../../redux/ReduxStore";
 import { Button } from '@nextui-org/react';
 
 type Props = {
@@ -14,10 +14,10 @@ type Props = {
 function PostInterections(props: Props) {
     const dispatch = useAppDispatch();
 
-    return <div className={styles.interectionsBlock}>
+    return <div className="interectionsBlock">
         <span>
             <span>
-                <Button size="sm" className={styles.isLikedButton} onClick={() => {
+                <Button size="sm" onClick={() => {
                     dispatch(setLike(props.postId))
                 }}>Лайк {props.likesCount}</Button>
             </span>

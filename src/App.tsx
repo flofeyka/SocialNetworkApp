@@ -10,9 +10,8 @@ import { NextUIProvider } from "@nextui-org/react";
 
 const Navbar = React.lazy(() => import("./components/Navbar/Navbar"));
 const Header = React.lazy(() => import("./components/Header/Header"));
-const Auth = React.lazy(() => import("./components/Auth/Auth"));
-const Login = React.lazy(() => import("./components/Auth/Login/Login"));
-const Register = React.lazy(() => import("./components/Auth/Register/Register"));
+const Login = React.lazy(() => import("./components/Auth/Login"));
+const Register = React.lazy(() => import("./components/Auth/Register"));
 const Chat = React.lazy(() => import("./pages/ChatPage"));
 const Profile = React.lazy(() => import("./components/Profile/Profile"));
 const Friends = React.lazy(() => import("./components/Friends/Friends"));
@@ -37,7 +36,6 @@ const App: React.FC = () => {
             <div className="AuthContainer">
                 <Routes>
                     <Route path='*' element={<Navigate to="/auth" />} />
-                    <Route path='/auth' element={<Auth />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/register' element={<Register />} />
                 </Routes>
