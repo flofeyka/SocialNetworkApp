@@ -1,9 +1,18 @@
-import React from 'react';
-import styles from "./CommunityItem.module.css";
+import { FC } from "react"
 
-function CommunityItem(props: any) {
-    return <div className={styles.Communities}>
-        <span className={styles.CommunityName}>
+type Props = {
+    CommunityName: string
+    Description: string
+    SubscribesValue: number
+    CommunitiesPhoto: string
+    id: number
+    isFollowed: boolean
+    setFollow: (id: number, isFollowed: boolean) => void
+}
+
+const CommunityItem: FC<Props> = (props) => {
+    return <div>
+        <span>
             {props.CommunityName}
         </span>
         <div>

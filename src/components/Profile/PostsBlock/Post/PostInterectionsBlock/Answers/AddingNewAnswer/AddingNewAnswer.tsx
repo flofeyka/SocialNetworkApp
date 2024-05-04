@@ -1,5 +1,4 @@
 import { FC } from "react";
-import styles from "./AddingNewAnswer.module.css";
 import user from "../../../../../../../assets/Profile/usersProfileIcon.png";
 import {answerComment} from "../../../../../../../redux/ProfileReducer";
 import {useFormik} from "formik";
@@ -37,14 +36,14 @@ const AddingNewAnswer: FC<{postId: number}> = ({postId}) => {
     return <form onSubmit={formik.handleSubmit}>
         <div className="flex">
             <span>
-            <img className={styles.inputAnswerImg}
+            <img className="max-w-[40px] max-h-10 rounded-full"
                  src={image || user} alt="" />
             </span>
             <span>
-                <Input name={"answerMessage"} className={styles.inputAnswer} autoFocus={true}
+                <Input name={"answerMessage"} className="text-[25px] rounded-[10px]" autoFocus={true}
                        onChange={formik.handleChange} value={formik.values.answerMessage}/>
             </span>
-            <Button type="submit" className={styles.answerButton}>Send</Button>
+            <Button type="submit" className="w-[50px] h-10 rounded-[10px] border-[none]">Send</Button>
         </div>
     </form>
 }

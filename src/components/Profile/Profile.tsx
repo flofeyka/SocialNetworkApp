@@ -1,7 +1,7 @@
 import { memo } from "react";
 import Descriptions from "./Description/Descriptions";
 import Posts from "./PostsBlock/Posts";
-import { Params, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function Profile() {
     let LinkedUserId: any = useParams().userId;
