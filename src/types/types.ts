@@ -118,14 +118,14 @@ export type FeedsType = {
 }
 
 export type friendsItemType = {
-    id: number
-    name: string
-    status: string | null
+    id: number;
+    name: string;
+    status: string | null;
     photos: {
-        small: string
-        large: string
-    }
-    followed: boolean
+        small: string;
+        large: string;
+    };
+    followed: boolean;
 }
 
 export type FriendsType = {

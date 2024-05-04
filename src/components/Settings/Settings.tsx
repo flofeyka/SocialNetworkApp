@@ -1,42 +1,39 @@
-import React, {useState} from "react";
-import styles from "./Settings.module.css"
+import React, { useState } from "react";
 import user from "./../../assets/Profile/usersProfileIcon.png"
-import {setNewCurrentUsersPhoto} from "../../redux/AuthReducer";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../redux/ReduxStore";
+import { setNewCurrentUsersPhoto } from "../../redux/AuthReducer";
+import { useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "../../redux/ReduxStore";
+import { Input } from "@nextui-org/react";
+import { setStatusProfile } from "../../redux/ProfileReducer";
 
 
 const Settings: React.FC = () => {
-    const currentUserPhoto = useSelector((state: RootState) => state.AuthPage.currentProfileImage.large)
+    const [currentUserPhoto, status] = useSelector((state: RootState) => [state.AuthPage.currentProfileImage.large, state.ProfilePage.status])
 
     const [photo, setPhoto] = useState<File>();
-    const dispatch: any = useDispatch();
+    const dispatch = useAppDispatch();
+    const [newStatus, setNewStatus] = useState<string>(status)
 
-    function getCurrentPhoto(event: any) {
-        setPhoto(event.target.files)
-    }
 
     return <div>
         <div>
+            <img className="h-[150px] w-[150px] rounded-full" src={currentUserPhoto || user} alt={"User's avatar"} />
+        </div>
+        <div>
+            <input type="file" onChange={e => e.target.files && setPhoto(e.target.files[0])} />
             <div>
-                <img className={styles.usersPhoto} src={currentUserPhoto || user} alt={"User's avatar"}/>
-            </div>
-            <div>
-                <input type={"file"} onChange={getCurrentPhoto}/>
-                <div>
-                    <button onClick={() => {
-                        dispatch(setNewCurrentUsersPhoto(photo));
-                    }}>Update
-                    </button>
-                </div>
+                <button onClick={() => {
+                    dispatch(setNewCurrentUsersPhoto(photo));
+                }}>Update
+                </button>
             </div>
         </div>
-        <div className={styles.UsersDescriptionBlock}>
+        <div>
             <div>
-                FullName: <input/>
+                FullName: <input />
             </div>
             <div>
-                Status: <input/>
+                Status: <Input placeholder={status} value={newStatus} onChange={(e) => setNewStatus(e.target.value)} onBlur={() => dispatch(setStatusProfile(newStatus))} />
             </div>
             <div>
                 Nickname: flofeyka <button>Change nickname</button>
@@ -44,7 +41,7 @@ const Settings: React.FC = () => {
         </div>
         <div>
             <div>
-                E-mail: <input/>
+                E-mail: <input />
             </div>
             <div>
                 <button>Change</button>

@@ -1,7 +1,6 @@
-import React from "react";
+import { FC } from "react";
 
-
-function Music() {
+const Music: FC = () => {
     return <div>
             Music
         </div>

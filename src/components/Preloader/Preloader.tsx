@@ -1,9 +1,7 @@
-import React from 'react';
 import loader from '../../assets/loader.gif';
-import styles from "./Preloader.module.css"
 
-function Preloader(props:any) {
-    return <div className={styles.Preloader}>
+function Preloader() {
+    return <div className="bg-none">
         <img src={loader} alt="Loader for unload's pages"/>
     </div>
 }

@@ -1,5 +1,4 @@
 import { FC, memo, useEffect, useState } from "react";
-import styles from "./Descriptions.module.css"
 import user from "../../../assets/Profile/usersProfileIcon.png"
 import { getFollowingData, getProfile, getStatus, setStatusProfile } from "../../../redux/ProfileReducer";
 import FollowBlock from "./FollowBlock/Follow";
@@ -20,37 +19,35 @@ const Descriptions: FC<{ LinkedUserId: number }> = ({ LinkedUserId }) => {
 
     const [editMode, setEditMode] = useState<boolean>(false);
     const [status, setStatus] = useState<string>(profileStatus);
-    console.log(status);
-
     const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(getStatus(LinkedUserId));
         dispatch(getFollowingData(+LinkedUserId));
         dispatch(getProfile(+LinkedUserId));
-    }, [LinkedUserId, profileStatus, dispatch]);
+    }, [LinkedUserId, isFollowing, profileStatus, dispatch]);
 
 
-    return <div className={styles.desc}>
-        <div className={styles.Logo}>
-            <img src={currentUsersPhoto || user} alt="" />
+    return <div className="apply align-top text-xl flex flex-wrap justify-center bg-[white] p-[15px] rounded-[10px] border-[0.5px] border-solid border-[black]">
+        <div className="w-[150px]">
+            <img className="w-[130px] h-[130px] rounded-full" src={currentUsersPhoto || user} alt="" />
             <span>
                 {LinkedUserId !== currentUserId ? <FollowBlock
                     LinkedUserId={LinkedUserId} isFollowing={isFollowing}
                     followingInProgress={followingInProgress} /> : null}
             </span>
         </div>
-        <div className={styles.DescriptionContainer}>
-            <div className={styles.name}>
+        <div className="basis-[250px] grow-[2] mt-[-5px] ml-[15px] hover:transition-all">
+            <div className="text-[35px] font-bold inline align-top mb-2.5">
                 {fullName}
             </div>
             <span>
                 {!editMode ? <div onDoubleClick={() => {
                     setEditMode(LinkedUserId === currentUserId);
-                }} className={styles.status}>
-                    {status}
+                }} className="text-xl mt-[10px]">
+                    {profileStatus}
                 </div> : <div>
-                    <input className={styles.inputStatus} onChange={event => { setStatus(event.target.value); }}
+                    <input className="text-xl h-[25px] w-full rounded-[15px]" placeholder={profileStatus} onChange={event => setStatus(event.target.value)}
                         autoFocus={true} onBlur={() => {
                             setEditMode(false);
                             dispatch(setStatusProfile(status));
@@ -58,7 +55,7 @@ const Descriptions: FC<{ LinkedUserId: number }> = ({ LinkedUserId }) => {
                     </input>
                 </div>}
             </span>
-            <span>
+            <span className="mt-[10px]">
                 <AboutMeBlock LinkedUserId={LinkedUserId} />
             </span>
         </div>

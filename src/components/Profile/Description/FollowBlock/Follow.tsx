@@ -1,25 +1,22 @@
-import React, { FC } from "react";
-import styles from "./FollowBlock.module.css"
-import {Follow, unFollow} from "../../../../redux/ProfileReducer";
-import {useAppDispatch} from "../../../../redux/ReduxStore";
+import { FC } from "react";
+import { Follow, unFollow } from "../../../../redux/ProfileReducer";
+import { useAppDispatch } from "../../../../redux/ReduxStore";
+import { Button } from "@nextui-org/react";
 
 
-type Props = {
-    LinkedUserId: number
-    isFollowing: boolean
-    followingInProgress: boolean
-}
-const FollowBlock:FC<Props> = (props) => {
+const FollowBlock: FC<{ LinkedUserId: number; isFollowing: boolean; followingInProgress: boolean }> = (props) => {
     const dispatch = useAppDispatch();
-    return <div className={styles.followBlock}>
-        {!props.isFollowing ? <button onClick={() => {
-            dispatch(Follow(props.LinkedUserId))
-        }} disabled={props.followingInProgress}>Подписаться
-        </button> :
-            <button onClick={() => {
-                dispatch(unFollow(props.LinkedUserId))
-            }} disabled={props.followingInProgress}>Отписаться
-            </button>}
+
+    return <div className="mt-1">
+        {!props.isFollowing
+            ? <Button className="min-w-[125px]" size="lg" variant="faded" onClick={() => dispatch(Follow(props.LinkedUserId))}
+                disabled={props.followingInProgress}>Подписаться
+            </Button>
+            :
+            <Button className="min-w-[125px]" size="lg" variant="faded" onClick={() => dispatch(unFollow(props.LinkedUserId))
+            } disabled={props.followingInProgress}>Отписаться
+            </Button>
+        }
     </div>
 }
 

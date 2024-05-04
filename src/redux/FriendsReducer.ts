@@ -1,6 +1,6 @@
 import { followAPI, UsersAPI } from "../API/api";
 import { friendsItemType, FriendsType } from "../types/types";
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ActionReducerMapBuilder, createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const friendsSlice = createSlice({
     name: "friends",
@@ -20,7 +20,7 @@ const friendsSlice = createSlice({
         ToggleIsFetching: (state, action: PayloadAction<boolean>) => {
             state.isFetching = action.payload;
         }
-    }, extraReducers: (builder) => {
+    }, extraReducers: (builder: ActionReducerMapBuilder<FriendsType>) => {
         builder.addCase(getUsers.pending, (state, action: PayloadAction) => {
             state.isFetching = true;
         })

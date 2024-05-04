@@ -2,9 +2,10 @@ import { NavLink } from "react-router-dom";
 import styles from "./PostItem.module.css"
 import user from "../../../../assets/Profile/usersProfileIcon.png"
 import details from "../../../../assets/AdditionalyPhoto.png"
+import { FeedPostItemType } from "../../../../types/types";
 
 
-function PostItem({ post, setOpenPost }: any) {
+function PostItem({ post, setOpenPost }: {post: FeedPostItemType, setOpenPost: (openPost: boolean) => void}) {
     return (
         <div className={styles.PostBox}>
             <div>

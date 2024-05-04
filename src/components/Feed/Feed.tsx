@@ -1,11 +1,10 @@
-import React, {useEffect} from "react"
-import styles from "./Feed.module.css"
+import {useEffect} from "react"
 import Posts from "./Posts/Posts";
 import {useSelector} from "react-redux";
 import {setCurrentPhoto} from "../../redux/AuthReducer";
 import {RootState, useAppDispatch} from "../../redux/ReduxStore";
 
-function Feed() {
+export default function Feed() {
     const [FeedPosts, userId] = useSelector((state: RootState) => [state.FeedPage.FeedPosts, state.AuthPage.userId]);
     const dispatch = useAppDispatch();
 
@@ -14,11 +13,8 @@ function Feed() {
     }, [userId]);
 
     return (
-        <div className={styles.feed}>
-            <Posts FeedPosts={FeedPosts}
-            />
+        <div className="text-xl cursor-pointer m-[15px]">
+            <Posts FeedPosts={FeedPosts}/>
         </div>
     )
 }
-
-export default Feed;

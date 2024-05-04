@@ -7,7 +7,7 @@ import { RootState, useAppDispatch } from "../../redux/ReduxStore";
 import { Button } from "antd";
 import "../../App.css";
 
-function Header() {
+export default function Header() {
     const [isAuth, login, userId] = useSelector((state: RootState) => [
         state.AuthPage.isAuth,
         state.AuthPage.login,
@@ -18,7 +18,7 @@ function Header() {
     return <header className="header flex bg-[white] max-h-[55px] px-10 border-solid border-black border-b-[1px] items-center">
         <NavLink to={"/"}>
             <div className="flex">
-                <img src={logo} alt="logo" className="w-[45px] h-[45px]" /><span className="font-bold text-4xl">LinkApp</span>
+                <img src={logo} alt="logo" className="w-[45px] h-[45px] mr-1" /><span className="font-bold text-4xl">LinkApp</span>
             </div>
         </NavLink>
         <span className="w-[100%]">{isAuth &&
@@ -30,6 +30,3 @@ function Header() {
         </span>
     </header>
 }
-
-
-export default Header;
