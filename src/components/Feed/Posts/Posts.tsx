@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import AddNewPost from './AddNewPost/AddNewPost';
-import styles from "./Posts.module.css"
 import { FeedPostItemType } from "../../../types/types";
 import OpenPostBlock from './PostItem/OpenPost/OpenPostBlock';
 import PostItem from './PostItem/PostItem';
@@ -19,7 +18,7 @@ function Posts(props: Props) {
         {openPost && <OpenPostBlock setOpenPost={(openMode: boolean) => {
             setOpenPost(openMode)
         }} />}
-        <div className={styles.PostContainer}>
+        <div className="flex flex-col items-center">
             {props.FeedPosts.map((post: FeedPostItemType) => {
                 return <PostItem post={post} setOpenPost={(openPost: boolean) => {setOpenPost(openPost)}}/>
             })

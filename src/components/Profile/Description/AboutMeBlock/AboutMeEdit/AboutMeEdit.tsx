@@ -2,7 +2,6 @@ import React, { FC, useState } from 'react';
 import { editProfile } from '../../../../../redux/ProfileReducer';
 import { useAppDispatch } from "../../../../../redux/ReduxStore";
 import { useFormik } from "formik";
-import "./aboutMeEdit.css";
 import { Checkbox, Input } from '@nextui-org/react';
 import { TextareaAutosize } from '@mui/material';
 
@@ -37,7 +36,7 @@ const AboutMeEdit: FC<Props> = ({ editMode, setEditMode, ...props }) => {
             setEditMode(false);
         }
     });
-    return <div className="beforeAboutMeContainer">
+    return <div>
         {editMode && <form onSubmit={formik.handleSubmit}>
             <h4>Основные данные</h4>
             <li className='flex items-center my-2'><b className='mr-2'>Имя:</b> <Input size="sm" name={"fullName"} id={"fullName"} placeholder={"Имя"}

@@ -1,6 +1,6 @@
 import { ProfileAPI, followAPI } from "../API/api";
 import { postItemType, profileDataType, profileType } from "../types/types";
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { ActionReducerMapBuilder, PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const profileSlice = createSlice({
     name: "profile",
@@ -90,7 +90,7 @@ const profileSlice = createSlice({
                 post.answers.splice(action.payload - 1, 1);
             });
         }
-    }, extraReducers: (builder) => {
+    }, extraReducers: (builder: ActionReducerMapBuilder<profileType>) => {
         builder.addCase(getProfile.fulfilled, (state, action: PayloadAction<profileDataType>) => {
             state.profileData = action.payload;
         })

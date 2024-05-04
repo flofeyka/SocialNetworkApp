@@ -1,5 +1,4 @@
 import React, { FC, memo, useState } from 'react'
-import styles from './Post.module.css'
 import { NavLink } from "react-router-dom";
 import AnswerItem from "./PostInterectionsBlock/Answers/AnswerItem";
 import AddingNewAnswer from "./PostInterectionsBlock/Answers/AddingNewAnswer/AddingNewAnswer";
@@ -27,22 +26,22 @@ const PostItem: FC<Props> = ({ post, setOpenPost, openPost }) => {
     const [newMessage, setNewMessage] = useState<string>(post.postMessage);
 
     return <div key={post.id}>
-        <div className={styles.PostBox}>
+        <div className="text-[15px] flex border w-[580px] min-h-[100px] max-h-[400px] overflow-hidden text-ellipsis bg-[white] break-all mb-2.5 p-2.5 rounded-[10px] border-[solid]">
             <div>
-                <img src={post.usersPhoto || user} alt="" className={styles.UsersPhoto} />
+                <img src={post.usersPhoto || user} alt="" className="w-[80px] h-[80px] rounded-full border-1 border-solid border-black" />
             </div>
-            <div className={styles.DescriptionBox}>
+            <div className="basis-[250px] grow ml-[15px]">
                 <div>
                     <NavLink to={`/user/${post.userId}`}>
-                        <div className={styles.UsersName}>
+                        <div className="font-bold text-[25px] inline-block text-[black]">
                             {post.fullName}
                         </div>
                     </NavLink>
-                    <span className={styles.detailsBlock}>
-                        <button className={styles.details}><img src={details} /></button>
+                    <span>
+                        <button className="block clear-right float-right h-[20px] w-[20px] rounded-[10px] border-[none] hover:transition-all hover:duration-[0.3s] hover:ease-linear"><img src={details} /></button>
                     </span>
                 </div>
-                <div className={styles.UsersMessage} onClick={() => {
+                <div className="text-[17px] mt-2.5" onClick={() => {
                     setOpenPost(true);
                 }}>
                     {post.postMessage}
