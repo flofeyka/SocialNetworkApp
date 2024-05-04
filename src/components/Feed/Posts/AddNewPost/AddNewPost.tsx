@@ -1,4 +1,3 @@
-import styles from './AddNewPost.module.css'
 import { useSelector } from "react-redux";
 import { addPost } from "../../../../redux/ProfileReducer";
 import { addPostFeed } from "../../../../redux/FeedReducer";
@@ -35,10 +34,10 @@ function AddNewPost() {
 
 
     return <form onSubmit={formik.handleSubmit}>
-        <div className={styles.NewPostBlock}>
+        <div className="flex justify-center items-center">
             <span>
-                <TextareaAutosize name={"NewPostMessage"} className={styles.NewPost}
-                    placeholder='Что у вас нового?' value={formik.values.NewPostMessage} onChange={formik.handleChange}/>
+                <TextareaAutosize name={"NewPostMessage"} className="text-center text-[100%] resize-none bg-[white] h-[30px] min-h-[30px] h-auto max-h-[400px] min-w-[150px] w-[455px] max-w-[700px] border overflow-hidden rounded-[10px] border-solid border-[black]"
+                    placeholder='Что у вас нового?' value={formik.values.NewPostMessage} onChange={formik.handleChange} />
             </span>
             <span>
                 <Button type="submit" variant="faded" className="h-[30px] bg-white flex m-[5px]">

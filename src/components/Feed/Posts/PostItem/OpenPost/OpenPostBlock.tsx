@@ -1,18 +1,16 @@
-import styles from "./OpenPost.module.css";
-import closer from "../../../../../assets/Closer.png"
+import { Modal, ModalContent } from "@nextui-org/react";
+import { FC } from "react";
 
-function OpenPostBlock(props: any) {
-    return <div className={styles.openPostBlock}>
-        <div className={styles.openPostContainer}>
-            <div className={styles.closePage}>
-                <button onClick={() => {
-                    props.setOpenPost(false)
-                }}>
-                    <img src={closer} />
-                </button>
-            </div>
-        </div>
-    </div>
+type Props = {
+    setOpenPost: (openMode: boolean) => void
+}
+
+const OpenPostBlock: FC<Props> = (props) => {
+    return <Modal>
+        <ModalContent>
+            <div>DEBIL</div>
+        </ModalContent>
+    </Modal>
 }
 
 export default OpenPostBlock;

@@ -1,11 +1,10 @@
 import { FC, memo, useState } from 'react';
-import styles from "./AnswerItem.module.css";
 import user from "../../../../../../assets/Profile/usersProfileIcon.png";
 import { acceptAnswerChanges } from "../../../../../../redux/ProfileReducer";
 import { useDispatch } from "react-redux";
 import AnswerInterections from "./AnswerInterectionsBlock/AnswerInterections";
 import { answersType } from "../../../../../../types/types";
-import details from "../../../../../../assets/AdditionalyPhoto.png"
+// import details from "../../../../../../assets/AdditionalyPhoto.png"
 
 
 type Props = {
@@ -21,18 +20,18 @@ const AnswerItem: FC<Props> = ({ answer, currentUserId, answerMode, postId, setA
     const [answerMessage, setAnswerMessage] = useState(answer.answerMessage);
     const dispatch = useDispatch();
 
-    return <div key={answer.id} className={styles.answerItem}>
-        <div className={styles.imageBlock}>
-            <img className={styles.answerImg}
+    return <div key={answer.id} className="bg-[white] border flex w-[580px] mb-[5px] p-2.5 rounded-[10px] border-solid border-[black]">
+        <div>
+            <img className="w-[70px] h-[70px] justify-center rounded-[100%]"
                 src={answer.usersImage || user} alt="" />
         </div>
-        <div className={styles.commentBlock}>
-            <div className={styles.fullName}>
+        <div className="basis-[250px] grow ml-[7px]">
+            {/* <div className={styles.fullName}>
                 {answer.answerName}
                 <span className={styles.detailsBlock}>
                     <button className={styles.details}><img src={details} alt="details"/></button>
                 </span>
-            </div>
+            </div> */}
             {editMode && currentUserId === answer.userId ? <div>
                 <input value={answerMessage} onChange={(event) => {
                     setAnswerMessage(event.target.value)
@@ -42,7 +41,7 @@ const AnswerItem: FC<Props> = ({ answer, currentUserId, answerMode, postId, setA
                     setEditMode(false)
                 }}>Принять</button>
             </div> :
-                <div className={styles.answerMessage}>
+                <div className="max-w-[500px] mt-[5px]">
                     {answer.answerMessage}
                 </div>
             }
