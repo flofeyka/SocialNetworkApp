@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import user from "./../../assets/Profile/usersProfileIcon.png"
-import { setNewCurrentUsersPhoto } from "../../redux/AuthReducer";
+import { setNewCurrentUsersPhoto } from "../../redux/authSlice";
 import { useSelector } from "react-redux";
-import { RootState, useAppDispatch } from "../../redux/ReduxStore";
+import { RootState, useAppDispatch } from "../../redux/store";
 import { Input } from "@nextui-org/react";
-import { setStatusProfile } from "../../redux/ProfileReducer";
+import { setStatusProfile } from "../../redux/profileSlice";
 
 
 const Settings: React.FC = () => {

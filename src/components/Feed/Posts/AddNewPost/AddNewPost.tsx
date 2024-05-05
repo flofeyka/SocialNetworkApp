@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { addPost } from "../../../../redux/ProfileReducer";
-import { addPostFeed } from "../../../../redux/FeedReducer";
-import { RootState, useAppDispatch } from "../../../../redux/ReduxStore";
+import { addPost } from "../../../../redux/profileSlice";
+import { addPostFeed } from "../../../../redux/feedSlice";
+import { RootState, useAppDispatch } from "../../../../redux/store";
 import { useFormik } from 'formik';
 import * as Yup from "yup";
 import { TextareaAutosize } from '@mui/material';

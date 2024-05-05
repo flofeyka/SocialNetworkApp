@@ -1,5 +1,5 @@
-import { getUsers } from '../../../redux/FriendsReducer';
-import { useAppDispatch } from '../../../redux/ReduxStore';
+import { getUsers } from '../../../redux/friendsSlice';
+import { useAppDispatch } from '../../../redux/store';
 import { Button, Input } from '@nextui-org/react';
 import { useForm } from 'react-hook-form';
 

@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { NavLink } from "react-router-dom";
 import AboutMeEdit from "./AboutMeEdit/AboutMeEdit";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../redux/ReduxStore";
+import { RootState } from "../../../../redux/store";
 import { Button, Modal, ModalContent, useDisclosure } from "@nextui-org/react";
 
 

@@ -11,8 +11,8 @@ import settings from "../../assets/Navbar/setting.png"
 import friends from "../../assets/Navbar/friends.png"
 import community from "../../assets/Navbar/community.png"
 import {useSelector} from "react-redux";
-import {getCurrentLogo} from "../../redux/AuthReducer";
-import {RootState, useAppDispatch} from "../../redux/ReduxStore";
+import {getCurrentLogo} from "../../redux/authSlice";
+import {RootState, useAppDispatch} from "../../redux/store";
 
 function Navbar() {
     const [usersPhoto, fullName, userId] = useSelector((state: RootState) => [

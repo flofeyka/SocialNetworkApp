@@ -1,9 +1,9 @@
 import { FC } from "react";
 import user from "../../../../../../../assets/Profile/usersProfileIcon.png";
-import {answerComment} from "../../../../../../../redux/ProfileReducer";
+import {answerComment} from "../../../../../../../redux/profileSlice";
 import {useFormik} from "formik";
 import * as Yup from "yup";
-import { RootState, useAppDispatch } from "../../../../../../../redux/ReduxStore";
+import { RootState, useAppDispatch } from "../../../../../../../redux/store";
 import { useSelector } from "react-redux";
 import { Button, Input } from "@nextui-org/react";
 

@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Follow, unFollow } from "../../../../redux/ProfileReducer";
-import { useAppDispatch } from "../../../../redux/ReduxStore";
+import { Follow, unFollow } from "../../../../redux/profileSlice";
+import { useAppDispatch } from "../../../../redux/store";
 import { Button } from "@nextui-org/react";
 
 

@@ -1,4 +1,4 @@
-import {getCurrentLogo, getUserData} from "./AuthReducer";
+import {getCurrentLogo, getUserData} from "./authSlice";
 import {createSlice} from "@reduxjs/toolkit";
 
 type InitialStateType = {

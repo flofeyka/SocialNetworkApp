@@ -1,6 +1,6 @@
-import { addPost } from "../../../../../redux/ProfileReducer";
+import { addPost } from "../../../../../redux/profileSlice";
 import { useFormik } from "formik";
-import { RootState, useAppDispatch } from "../../../../../redux/ReduxStore";
+import { RootState, useAppDispatch } from "../../../../../redux/store";
 import * as Yup from "yup";
 import { Button } from '@nextui-org/react';
 import { useSelector } from 'react-redux';

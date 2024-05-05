@@ -1,4 +1,4 @@
-import DialogsReducer, {sendMessage} from "../DialogsReducer";
+import DialogsReducer, {sendMessage} from "../dialogsSlice";
 import {DialogsType} from "../../types/types";
 
 const state: DialogsType = {

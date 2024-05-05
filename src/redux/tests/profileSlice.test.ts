@@ -3,8 +3,8 @@ import profileReducer, {
     acceptCommentChanges,
     addPost,
     answerComment, deleteAnswer,
-    deleteComment, setLike, setLikeAnswer} from "../ProfileReducer";
-import ProfileReducer from "../ProfileReducer";
+    deleteComment, setLike, setLikeAnswer} from "../profileSlice";
+import ProfileReducer from "../profileSlice";
 import {profileDataType, profileType} from "../../types/types";
 
 let state : profileType = {

@@ -1,4 +1,4 @@
-import FeedReducer, {addPostFeed, reportPost} from "../FeedReducer";
+import FeedReducer, {addPostFeed, reportPost} from "../feedSlice";
 import {FeedsType} from "../../types/types";
 
 let state: FeedsType = {

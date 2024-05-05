@@ -1,7 +1,7 @@
 import {useSelector} from "react-redux";
-import {setFollow} from "../../redux/CommunityReducer";
+import {setFollow} from "../../redux/communitySlice";
 import CommunityItem from "./CommunityItem/CommunityItem";
-import {RootState, useAppDispatch} from "../../redux/ReduxStore";
+import {RootState, useAppDispatch} from "../../redux/store";
 
 
 function Community() {

@@ -1,8 +1,8 @@
 import { useEffect } from "react"
 import Posts from "./Posts/Posts";
 import { useSelector } from "react-redux";
-import { setCurrentPhoto } from "../../redux/AuthReducer";
-import { RootState, useAppDispatch } from "../../redux/ReduxStore";
+import { setCurrentPhoto } from "../../redux/authSlice";
+import { RootState, useAppDispatch } from "../../redux/store";
 
 export default function Feed() {
     const [FeedPosts, userId] = useSelector((state: RootState) => [state.FeedPage.FeedPosts, state.AuthPage.userId]);
