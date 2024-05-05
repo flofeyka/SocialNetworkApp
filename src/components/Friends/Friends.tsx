@@ -1,10 +1,10 @@
 import { FC, useEffect } from 'react'
 import { useSelector } from "react-redux";
-import { getUsers, setCurrentPage } from "../../redux/FriendsReducer";
+import { getUsers, setCurrentPage } from "../../redux/friendsSlice";
 import FriendsItem from "./FriendsItem/FriendsItem";
 import SearchBoxFriends from "./SearchFriends/SearchBox";
 import { Pagination } from "antd";
-import { RootState, useAppDispatch } from "../../redux/ReduxStore";
+import { RootState, useAppDispatch } from "../../redux/store";
 import { friendsItemType } from "../../types/types";
 
 const Friends:FC = () => {

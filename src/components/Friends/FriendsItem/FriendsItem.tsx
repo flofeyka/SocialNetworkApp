@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import usersIcon from "../../../assets/Profile/usersProfileIcon.png";
 import { friendsItemType } from "../../../types/types";
-import { useAppDispatch } from "../../../redux/ReduxStore";
-import { Follow, unFollow } from "../../../redux/FriendsReducer";
+import { useAppDispatch } from "../../../redux/store";
+import { Follow, unFollow } from "../../../redux/friendsSlice";
 import { Button } from '@nextui-org/react';
 
 type Props = {

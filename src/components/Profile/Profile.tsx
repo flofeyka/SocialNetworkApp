@@ -4,7 +4,7 @@ import Posts from "./PostsBlock/Posts";
 import { useParams } from "react-router-dom";
 
 function Profile() {
-    let LinkedUserId: any = useParams().userId;
+    const LinkedUserId: any = useParams().userId;
 
     return <div>
         <div>

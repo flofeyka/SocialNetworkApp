@@ -4,10 +4,10 @@ import AnswerItem from "./PostInterectionsBlock/Answers/AnswerItem";
 import AddingNewAnswer from "./PostInterectionsBlock/Answers/AddingNewAnswer/AddingNewAnswer";
 import PostInterections from "./PostInterectionsBlock/PostInterections";
 import { useDispatch } from "react-redux";
-import { acceptCommentChanges, deleteComment } from "../../../../redux/ProfileReducer";
+import { acceptCommentChanges, deleteComment } from "../../../../redux/profileSlice";
 import user from "../../../../assets/Profile/usersProfileIcon.png"
 import details from "../../../../assets/AdditionalyPhoto.png"
-import { RootState, useAppDispatch } from '../../../../redux/ReduxStore';
+import { RootState, useAppDispatch } from '../../../../redux/store';
 import { useSelector } from 'react-redux';
 import { answersType, postItemType } from '../../../../types/types';
 

@@ -1,9 +1,9 @@
 import { FC, memo, useEffect, useState } from "react";
 import user from "../../../assets/Profile/usersProfileIcon.png"
-import { getFollowingData, getProfile, getStatus, setStatusProfile } from "../../../redux/ProfileReducer";
+import { getFollowingData, getProfile, getStatus, setStatusProfile } from "../../../redux/profileSlice";
 import FollowBlock from "./FollowBlock/Follow";
 import AboutMeBlock from "./AboutMeBlock/AboutMe";
-import { RootState, useAppDispatch } from "../../../redux/ReduxStore";
+import { RootState, useAppDispatch } from "../../../redux/store";
 import { useSelector } from "react-redux";
 
 const Descriptions: FC<{ LinkedUserId: number }> = ({ LinkedUserId }) => {

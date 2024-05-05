@@ -1,10 +1,10 @@
 import React, { Suspense, useEffect } from "react";
 import './App.css';
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { initiliazeApp } from "./redux/AppReducer";
+import { initiliazeApp } from "./redux/appSlice";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import InitializationPage from "./components/Preloader/Initialization/InitializationPage.jsx";
-import store, { RootState } from "./redux/ReduxStore";
+import store, { RootState } from "./redux/store";
 import { NextUIProvider } from "@nextui-org/react";
 
 

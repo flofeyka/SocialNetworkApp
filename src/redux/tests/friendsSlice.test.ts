@@ -1,4 +1,4 @@
-import FriendsReducer, { Follow } from "../FriendsReducer";
+import FriendsReducer, { Follow } from "../friendsSlice";
 import {FriendsType} from "../../types/types";
 import { followAPI } from "../../API/api";
 jest.mock("../../API/api");

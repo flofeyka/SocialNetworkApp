@@ -1,4 +1,4 @@
-import {setLikeAnswer} from "../../../../../../../redux/ProfileReducer";
+import {setLikeAnswer} from "../../../../../../../redux/profileSlice";
 import {useDispatch} from "react-redux";
 import { Button } from "@nextui-org/react";
 import "../../Interections.css"

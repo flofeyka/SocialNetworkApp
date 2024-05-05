@@ -2,8 +2,8 @@ import "../../App.css"
 import logo from "../../assets/logo.png"
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { LogOutSystem } from "../../redux/AuthReducer";
-import { RootState, useAppDispatch } from "../../redux/ReduxStore";
+import { LogOutSystem } from "../../redux/authSlice";
+import { RootState, useAppDispatch } from "../../redux/store";
 import { Button } from "antd";
 import "../../App.css";
 

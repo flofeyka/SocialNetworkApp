@@ -1,4 +1,4 @@
-import AuthReducer, {setCurrentPhoto, setUserData} from "../AuthReducer";
+import AuthReducer, {setCurrentPhoto, setUserData} from "../authSlice";
 import {authType} from "../../types/types";
 import { Action } from "redux";
 

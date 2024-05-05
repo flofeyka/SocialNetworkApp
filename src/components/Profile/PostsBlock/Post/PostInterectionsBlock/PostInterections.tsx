@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Interections.css";
-import { setLike } from "../../../../../redux/ProfileReducer";
-import { useAppDispatch } from "../../../../../redux/ReduxStore";
+import { setLike } from "../../../../../redux/profileSlice";
+import { useAppDispatch } from "../../../../../redux/store";
 import { Button } from '@nextui-org/react';
 
 type Props = {

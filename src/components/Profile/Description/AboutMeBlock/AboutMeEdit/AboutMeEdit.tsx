@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
-import { editProfile } from '../../../../../redux/ProfileReducer';
-import { useAppDispatch } from "../../../../../redux/ReduxStore";
+import { editProfile } from '../../../../../redux/profileSlice';
+import { useAppDispatch } from "../../../../../redux/store";
 import { useFormik } from "formik";
 import { Checkbox, Input } from '@nextui-org/react';
 import { TextareaAutosize } from '@mui/material';
