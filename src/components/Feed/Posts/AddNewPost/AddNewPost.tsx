@@ -27,7 +27,7 @@ function AddNewPost() {
                 userId, fullName, currentProfileImage: usersPhoto,
                 NewPostMessage: values.NewPostMessage, likesCount: 0, isLiked: false
             }));
-            dispatch(addPostFeed({ fullName: fullName, usersPhoto: usersPhoto, postText: values.NewPostMessage, userId: userId }));
+            dispatch(addPostFeed({ fullName, usersPhoto, postMessage: values.NewPostMessage, userId, isReported: false }));
         }
     })
 

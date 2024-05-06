@@ -6,6 +6,7 @@ import AboutMeBlock from "./AboutMeBlock/AboutMe";
 import { RootState, useAppDispatch } from "../../../redux/store";
 import { useSelector } from "react-redux";
 
+
 const Descriptions: FC<{ LinkedUserId: number }> = ({ LinkedUserId }) => {
     const [fullName, currentUsersPhoto, isFollowing, currentUserId, followingInProgress,
         profileStatus] = useSelector((state: RootState) => [
@@ -28,7 +29,7 @@ const Descriptions: FC<{ LinkedUserId: number }> = ({ LinkedUserId }) => {
     }, [LinkedUserId, isFollowing, profileStatus, dispatch]);
 
 
-    return <div className="apply align-top text-xl flex flex-wrap justify-center bg-[white] p-[15px] rounded-[10px] border-[0.5px] border-solid border-[black]">
+    return <div className="apply align-top text-xl flex flex-wrap p-6 justify-center bg-[white] p-[15px] rounded-[15px] shadow-xl">
         <div className="w-[150px]">
             <img className="w-[130px] h-[130px] rounded-full" src={currentUsersPhoto || user} alt="" />
             <span>
