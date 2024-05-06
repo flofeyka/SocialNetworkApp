@@ -10,7 +10,7 @@ const Posts: FC = () => {
     const [openPost, setOpenPost] = useState<boolean>(false);
 
     const PostElem = [...postItem].reverse().map(post => <PostItem post={post} openPost={openPost}
-        setOpenPost={(openPost: boolean) => { setOpenPost(openPost) }} />);
+        setOpenPost={(openPost: boolean) => setOpenPost(openPost) } />);
     return <div>
         <AddingNewPost />
         <div>

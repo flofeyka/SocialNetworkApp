@@ -68,6 +68,7 @@ export type authType = {
     isFetching: boolean
     captchaUrl: null | string,
     currentUserName: string | null
+    errorMessage: null | string
 }
 
 export type CommunitiesType = {
