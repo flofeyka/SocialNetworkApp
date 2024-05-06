@@ -151,7 +151,7 @@ export const getCaptchaUrl = createAsyncThunk(
   }
 );
 
-const LogOutSystem = createAsyncThunk("auth/logout", async () => {
+export const LogOutSystem = createAsyncThunk("auth/logout", async () => {
   const data = await AuthAPI.LogOut();
   if (data.resultCode === 0) {
     return true;

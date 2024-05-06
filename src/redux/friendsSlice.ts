@@ -24,7 +24,7 @@ const friendsSlice = createSlice({
         builder.addCase(getUsers.pending, (state, action: PayloadAction) => {
             state.isFetching = true;
         })
-        builder.addCase(getUsers.fulfilled, (state, action) => {
+        builder.addCase(getUsers.fulfilled, (state, action: PayloadAction<{items: Array<friendsItemType>, totalCount: number}>) => {
             state.users = action.payload.items
             state.totalUsersCount = action.payload.totalCount
             state.isFetching = false
@@ -39,20 +39,20 @@ const friendsSlice = createSlice({
                 }
             }
         })
-        builder.addCase(Follow.rejected, (state, action) => {
+        builder.addCase(Follow.rejected, (state, action: PayloadAction<any>) => {
             state.followingInProgress = { ...state.followingInProgress.filter(id => id !== action.payload) }
         });
-        builder.addCase(unFollow.pending, (state, action) => {
+        builder.addCase(unFollow.pending, (state, action: PayloadAction<any>) => {
             state.followingInProgress.push(action.payload)
         })
-        builder.addCase(unFollow.fulfilled, (state, action) => {
+        builder.addCase(unFollow.fulfilled, (state, action: PayloadAction<any>) => {
             for (let i = 0; i < state.users.length; i++) {
                 if (state.users[i].id === action.payload) {
                     state.users[i].followed = false
                 }
             }
         })
-        builder.addCase(unFollow.rejected, (state, action) => {
+        builder.addCase(unFollow.rejected, (state, action: PayloadAction<any>) => {
             state.followingInProgress = { ...state.followingInProgress.filter(id => id !== action.payload) }
         });
     }
