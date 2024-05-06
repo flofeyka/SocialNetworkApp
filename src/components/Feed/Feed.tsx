@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import Posts from "./Posts/Posts";
 import { useSelector } from "react-redux";
-import { setCurrentPhoto } from "../../redux/authSlice";
+import { getCurrentLogo } from "../../redux/authSlice";
 import { RootState, useAppDispatch } from "../../redux/store";
 
 export default function Feed() {
@@ -9,7 +9,7 @@ export default function Feed() {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(setCurrentPhoto(userId));
+        dispatch(getCurrentLogo());
     }, [userId, dispatch]);
 
     return (

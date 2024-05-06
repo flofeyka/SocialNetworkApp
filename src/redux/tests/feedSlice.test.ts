@@ -15,7 +15,7 @@ let state: FeedsType = {
 }
 
 it("Post in feed should be added", async () => {
-    const action = addPostFeed({fullName: "Test user", usersPhoto: null, postText: "Test text", userId: 1, isReported: false});
+    const action = addPostFeed({fullName: "Test user", usersPhoto: null, postMessage: "Test text", userId: 1, isReported: false});
 
     const newState = FeedReducer(state, action);
     expect(newState.FeedPosts[1]).toStrictEqual({
