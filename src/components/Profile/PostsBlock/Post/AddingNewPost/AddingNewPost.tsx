@@ -34,7 +34,7 @@ const AddingNewPost: FC = () => {
 
     return <form onSubmit={formik.handleSubmit} className="flex justify-center">
         <div className='flex items-center mb-2 max-w-[700px] min-w-[300px]'>
-                <TextareaAutosize name={"NewPostMessage"} className="min-h-[40px] min-w-[300px] max-w-[700px] text-2xl overflow-hidden rounded-xl border-solid border-2 border-black resize-none" placeholder={"Что у вас нового?"}
+                <TextareaAutosize name={"NewPostMessage"} className="min-h-[40px] .placeholder-opacity-100  min-w-[300px] max-w-[700px] text-2xl overflow-hidden rounded-xl border-solid border-2 border-black resize-none" placeholder={"Что у вас нового?"}
                     onChange={formik.handleChange}
                     value={formik.values.NewPostMessage} />
             <Button type="submit" variant="faded" className="bg-white mx-3">Отправить</Button>

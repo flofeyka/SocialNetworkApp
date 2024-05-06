@@ -54,14 +54,12 @@ const authSlice = createSlice({
           resultCode: number;
         }>
       ) => {
-        if (action.payload.resultCode === 0) {
-          const { id, login, email } = action.payload;
-          state.userId = id;
-          state.login = login;
-          state.email = email;
-          state.isAuth = true;
-          state.isFetching = false;
-        }
+        const { id, login, email } = action.payload;
+        state.userId = id;
+        state.login = login;
+        state.email = email;
+        state.isAuth = true;
+        state.isFetching = false;
       }
     );
     builder.addCase(getUserData.pending, (state) => {
