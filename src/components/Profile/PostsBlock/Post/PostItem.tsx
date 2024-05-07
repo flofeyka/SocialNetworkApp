@@ -64,7 +64,7 @@ const PostItem: FC<Props> = ({ post, setOpenPost, openPost }) => {
         </div>
       </div>
       <div>
-        <div>
+        {/* <div>
           {post.answers.map((answer: answersType) => {
             return (
               <AnswerItem
@@ -77,7 +77,7 @@ const PostItem: FC<Props> = ({ post, setOpenPost, openPost }) => {
             );
           })}
         </div>
-        <div>{answerMode && <AddingNewAnswer postId={post.id} />}</div>
+        <div>{answerMode && <AddingNewAnswer postId={post.id} />}</div> */}
       </div>
     </div>
   );
