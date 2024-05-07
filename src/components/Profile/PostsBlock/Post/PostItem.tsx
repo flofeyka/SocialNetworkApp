@@ -8,6 +8,7 @@ import details from "../../../../assets/AdditionalyPhoto.png";
 import { RootState } from "../../../../redux/store";
 import { useSelector } from "react-redux";
 import { answersType, postItemType } from "../../../../types/types";
+import { Modal, ModalContent } from "@nextui-org/react";
 
 type Props = {
   post: postItemType;
@@ -20,6 +21,7 @@ const PostItem: FC<Props> = ({ post, setOpenPost, openPost }) => {
     (state: RootState) => state.AuthPage.userId
   );
 
+  const [open, setOpen] = useState<boolean>(false);
   const [answerMode, setAnswerMode] = useState<boolean>(false);
 
   return (
@@ -51,7 +53,7 @@ const PostItem: FC<Props> = ({ post, setOpenPost, openPost }) => {
               setOpenPost(true);
             }}
           >
-            {post.postMessage}
+            <div onClick={() => setOpen(true)}>{post.postMessage}</div>
           </div>
           <PostInterections
             postId={post.id}
@@ -64,20 +66,33 @@ const PostItem: FC<Props> = ({ post, setOpenPost, openPost }) => {
         </div>
       </div>
       <div>
-        {/* <div>
-          {post.answers.map((answer: answersType) => {
-            return (
-              <AnswerItem
-                currentUserId={currentUserId}
-                setAnswerMode={(editMode: boolean) => setAnswerMode(editMode)}
-                answerMode={answerMode}
-                postId={post.id}
-                answer={answer}
-              />
-            );
-          })}
-        </div>
-        <div>{answerMode && <AddingNewAnswer postId={post.id} />}</div> */}
+        <Modal className="p-3" size="2xl" isOpen={open} onClose={() => setOpen(false)}>
+          <ModalContent>
+            <div>
+              <div><img className="rounded-full" src={post.usersPhoto || user}/></div>
+              <div>{post.fullName}</div>
+              <div>{post.postMessage}</div>
+            </div>
+            <div>
+              <div className="flex flex-col items-center">
+                {post.answers.map((answer: answersType) => {
+                  return (
+                    <AnswerItem
+                      currentUserId={currentUserId}
+                      setAnswerMode={(editMode: boolean) =>
+                        setAnswerMode(editMode)
+                      }
+                      answerMode={answerMode}
+                      postId={post.id}
+                      answer={answer}
+                    />
+                  );
+                })}
+              </div>
+              <div><AddingNewAnswer postId={post.id} /></div>
+            </div>
+          </ModalContent>
+        </Modal>
       </div>
     </div>
   );
