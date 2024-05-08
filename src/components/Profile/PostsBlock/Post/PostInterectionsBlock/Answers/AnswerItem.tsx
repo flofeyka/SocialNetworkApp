@@ -20,18 +20,18 @@ const AnswerItem: FC<Props> = ({ answer, currentUserId, answerMode, postId, setA
     const [answerMessage, setAnswerMessage] = useState(answer.answerMessage);
     const dispatch = useDispatch();
 
-    return <div key={answer.id} className="bg-[white] border flex w-[580px] mb-[5px] p-2.5 rounded-[10px] border-solid border-[black]">
+    return <div key={answer.id} className="bg-[white] border flex w-[575px] mb-[5px] p-2.5 border-t-black border-b-black">
         <div>
-            <img className="w-[70px] h-[70px] justify-center rounded-[100%]"
+            <img className="w-[70px] h-[70px] justify-center rounded-[100%] border-solid border-[black] border-[1px]"
                 src={answer.usersImage || user} alt="" />
         </div>
         <div className="basis-[250px] grow ml-[7px]">
-            {/* <div className={styles.fullName}>
+            <div className="font-bold text-[20px]">
                 {answer.answerName}
-                <span className={styles.detailsBlock}>
+                {/* <span className={styles.detailsBlock}>
                     <button className={styles.details}><img src={details} alt="details"/></button>
-                </span>
-            </div> */}
+                </span> */}
+            </div>
             {editMode && currentUserId === answer.userId ? <div>
                 <input value={answerMessage} onChange={(event) => {
                     setAnswerMessage(event.target.value)
