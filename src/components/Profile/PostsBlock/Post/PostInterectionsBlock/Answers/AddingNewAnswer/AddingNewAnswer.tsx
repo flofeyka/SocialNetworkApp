@@ -11,10 +11,11 @@ import { Button, Input } from "@nextui-org/react";
 const AddingNewAnswer: FC<{postId: number}> = ({postId}) => {
     const [currentUserId, name, image] = useSelector((state: RootState) => [
         state.AuthPage.userId,
-        state.AuthPage.currentUserName,
+        state.AuthPage.login,
         state.AuthPage.currentProfileImage.large
     ])
     const dispatch = useAppDispatch();
+    console.log(currentUserId, name, image)
 
     const formik = useFormik({
         initialValues: {

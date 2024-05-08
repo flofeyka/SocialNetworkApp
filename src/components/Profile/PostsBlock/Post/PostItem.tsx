@@ -12,11 +12,9 @@ import { Modal, ModalContent } from "@nextui-org/react";
 
 type Props = {
   post: postItemType;
-  setOpenPost: any;
-  openPost: boolean;
 };
 
-const PostItem: FC<Props> = ({ post, setOpenPost, openPost }) => {
+const PostItem: FC<Props> = ({ post }) => {
   const currentUserId = useSelector(
     (state: RootState) => state.AuthPage.userId
   );
@@ -47,13 +45,8 @@ const PostItem: FC<Props> = ({ post, setOpenPost, openPost }) => {
               </button>
             </span>
           </div>
-          <div
-            className="text-[17px] mt-2.5"
-            onClick={() => {
-              setOpenPost(true);
-            }}
-          >
-            <div onClick={() => setOpen(true)}>{post.postMessage}</div>
+          <div className="text-[17px] mt-2.5" onClick={() => setOpen(true)}>
+            {post.postMessage}
           </div>
           <PostInterections
             postId={post.id}
@@ -66,30 +59,42 @@ const PostItem: FC<Props> = ({ post, setOpenPost, openPost }) => {
         </div>
       </div>
       <div>
-        <Modal className="p-3" size="2xl" isOpen={open} onClose={() => setOpen(false)}>
+        <Modal size="xl" isOpen={open} onClose={() => setOpen(false)}>
           <ModalContent>
-            <div>
-              <div><img className="rounded-full" src={post.usersPhoto || user}/></div>
-              <div>{post.fullName}</div>
-              <div>{post.postMessage}</div>
+            <div className="flex p-3">
+              <img
+                className="flex rounded-full w-[65px] h-[65px] flex"
+                src={post.usersPhoto || user}
+              />
+              <span className="ml-3">
+                <div className="flex font-bold text-[23px]">
+                  {post.fullName}
+                </div>
+                <div className="text-gray-600">Date</div>
+              </span>
             </div>
-            <div>
+            <div className="ml-3">{post.postMessage}</div>
+            <div className="border-t border-gray-400 mt-3 pt-1">
               <div className="flex flex-col items-center">
                 {post.answers.map((answer: answersType) => {
-                  return (
-                    <AnswerItem
-                      currentUserId={currentUserId}
-                      setAnswerMode={(editMode: boolean) =>
-                        setAnswerMode(editMode)
-                      }
-                      answerMode={answerMode}
-                      postId={post.id}
-                      answer={answer}
-                    />
-                  );
+                  if (answer.postId === post.id) {
+                    return (
+                      <AnswerItem
+                        currentUserId={currentUserId}
+                        setAnswerMode={(editMode: boolean) =>
+                          setAnswerMode(editMode)
+                        }
+                        answerMode={answerMode}
+                        postId={post.id}
+                        answer={answer}
+                      />
+                    );
+                  }
                 })}
               </div>
-              <div><AddingNewAnswer postId={post.id} /></div>
+              <div className="p-3">
+                <AddingNewAnswer postId={post.id} />
+              </div>
             </div>
           </ModalContent>
         </Modal>

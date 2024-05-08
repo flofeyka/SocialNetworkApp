@@ -33,7 +33,7 @@ const profileSlice = createSlice({
             })
         },
         answerComment: (state, action) => {
-            let { id, name, image, userId, message } = action.payload
+            const { id, name, image, userId, message } = action.payload
             state.PostItem.forEach(post => {
                 if (post.id === id) {
                     post.answers.push({

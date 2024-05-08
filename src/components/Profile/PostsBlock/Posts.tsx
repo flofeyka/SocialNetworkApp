@@ -7,10 +7,8 @@ import { RootState } from '../../../redux/store';
 const Posts: FC = () => {
     const postItem = useSelector((state: RootState) => state.ProfilePage.PostItem);
 
-    const [openPost, setOpenPost] = useState<boolean>(false);
 
-    const PostElem = [...postItem].reverse().map(post => <PostItem post={post} openPost={openPost}
-        setOpenPost={(openPost: boolean) => setOpenPost(openPost) } />);
+    const PostElem = [...postItem].reverse().map(post => <PostItem post={post}  />);
     return <div>
         <AddingNewPost />
         <div>
