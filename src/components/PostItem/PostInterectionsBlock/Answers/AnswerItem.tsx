@@ -1,9 +1,9 @@
 import { FC, memo, useState } from 'react';
-import user from "../../../../../../assets/Profile/usersProfileIcon.png";
-import { acceptAnswerChanges } from "../../../../../../redux/profileSlice";
+import user from "../../../../assets/Profile/usersProfileIcon.png";
 import { useDispatch } from "react-redux";
 import AnswerInterections from "./AnswerInterectionsBlock/AnswerInterections";
-import { answersType } from "../../../../../../types/types";
+import { answersType } from '../../../../types/types';
+import { acceptAnswerChanges } from '../../../../redux/profileSlice';
 // import details from "../../../../../../assets/AdditionalyPhoto.png"
 
 

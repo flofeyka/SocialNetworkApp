@@ -1,11 +1,11 @@
 import { FC } from "react";
-import user from "../../../../../../../assets/Profile/usersProfileIcon.png";
-import {answerComment} from "../../../../../../../redux/profileSlice";
+import user from "../../../../../assets/Profile/usersProfileIcon.png";
 import {useFormik} from "formik";
 import * as Yup from "yup";
-import { RootState, useAppDispatch } from "../../../../../../../redux/store";
 import { useSelector } from "react-redux";
 import { Button, Input } from "@nextui-org/react";
+import { RootState, useAppDispatch } from "../../../../../redux/store";
+import { answerComment } from "../../../../../redux/profileSlice";
 
 
 const AddingNewAnswer: FC<{postId: number}> = ({postId}) => {
