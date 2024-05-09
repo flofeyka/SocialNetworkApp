@@ -1,8 +1,8 @@
 import React from 'react';
 import "./Interections.css";
-import { setLike } from "../../../../../redux/profileSlice";
-import { useAppDispatch } from "../../../../../redux/store";
 import { Button } from '@nextui-org/react';
+import { useAppDispatch } from '../../../redux/store';
+import { setLike } from '../../../redux/profileSlice';
 
 type Props = {
     postId: number

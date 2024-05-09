@@ -115,7 +115,7 @@ export type FeedPostItemType = {
 }
 
 export type FeedsType = {
-    FeedPosts: Array<FeedPostItemType>
+    FeedPosts: Array<postItemType>
 }
 
 export type friendsItemType = {

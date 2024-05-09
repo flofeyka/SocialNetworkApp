@@ -1,4 +1,4 @@
-import { FeedPostItemType, FeedsType } from "../types/types";
+import { FeedPostItemType, FeedsType, postItemType } from "../types/types";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const feedSlice = createSlice({
@@ -11,9 +11,11 @@ const feedSlice = createSlice({
         usersPhoto: null,
         userId: 2,
         postMessage: "Emmanuel, give me the book pls",
-        isReported: false,
+        isLiked: false,
+        likesCount: 0,
+        answers: []
       },
-    ] as Array<FeedPostItemType>,
+    ] as Array<postItemType>,
   } as FeedsType,
   reducers: {
     addPostFeed: (state, action: PayloadAction<{
@@ -21,9 +23,8 @@ const feedSlice = createSlice({
         usersPhoto: string | null;
         userId: number;
         postMessage: string;
-        isReported: boolean;
       }>) => {
-      const { fullName, usersPhoto, userId, postMessage, isReported } =
+      const { fullName, usersPhoto, userId, postMessage } =
         action.payload;
       state.FeedPosts.push({
         id: Object.keys(state.FeedPosts).length + 1,
@@ -31,17 +32,14 @@ const feedSlice = createSlice({
         usersPhoto: usersPhoto,
         userId: userId,
         postMessage: postMessage,
-        isReported: isReported,
-      });
-    },
-    reportPost: (state, action: PayloadAction<number>) => {
-      state.FeedPosts.forEach((item) => {
-        item.isReported = action.payload === item.id;
-      });
+        likesCount: 0,
+        isLiked: false,
+        answers: []
+        });
     },
   },
 });
 
-export const { addPostFeed, reportPost } = feedSlice.actions;
+export const { addPostFeed } = feedSlice.actions;
 
 export default feedSlice.reducer;

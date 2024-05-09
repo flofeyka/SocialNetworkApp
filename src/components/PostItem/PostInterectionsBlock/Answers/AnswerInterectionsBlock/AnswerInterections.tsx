@@ -1,8 +1,8 @@
-import {setLikeAnswer} from "../../../../../../../redux/profileSlice";
 import {useDispatch} from "react-redux";
 import { Button } from "@nextui-org/react";
 import "../../Interections.css"
 import { FC } from "react";
+import { setLikeAnswer } from "../../../../../redux/profileSlice";
 
 type Props = {
     answerId: number;
