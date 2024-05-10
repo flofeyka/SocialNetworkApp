@@ -10,12 +10,12 @@ import { Button, Modal, ModalContent, useDisclosure } from "@nextui-org/react";
 const AboutMeBlock: FC<{ LinkedUserId: number }> = ({ LinkedUserId }) => {
     const [fullName, aboutMe, lookingForAJob, lookingForAJobDescription, contacts,
         currentUserId] = useSelector((state: RootState) => [
-            state.ProfilePage.profileData.fullName,
-            state.ProfilePage.profileData.aboutMe,
-            state.ProfilePage.profileData.lookingForAJob,
-            state.ProfilePage.profileData.lookingForAJobDescription,
-            state.ProfilePage.profileData.contacts,
-            state.AuthPage.userId
+            state.Profile.profileData.fullName,
+            state.Profile.profileData.aboutMe,
+            state.Profile.profileData.lookingForAJob,
+            state.Profile.profileData.lookingForAJobDescription,
+            state.Profile.profileData.contacts,
+            state.Auth.userId
         ]);
 
     const { isOpen, onOpen, onClose } = useDisclosure();
