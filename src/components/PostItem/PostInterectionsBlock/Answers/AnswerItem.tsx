@@ -3,7 +3,7 @@ import user from "../../../../assets/Profile/usersProfileIcon.png";
 import { useDispatch } from "react-redux";
 import AnswerInterections from "./AnswerInterectionsBlock/AnswerInterections";
 import { answersType } from '../../../../types/types';
-import { acceptAnswerChanges } from '../../../../redux/profileSlice';
+import { acceptAnswerChanges } from '../../../../redux/postsSlice';
 // import details from "../../../../../../assets/AdditionalyPhoto.png"
 
 
@@ -22,11 +22,11 @@ const AnswerItem: FC<Props> = ({ answer, currentUserId, answerMode, postId, setA
 
     return <div key={answer.id} className="bg-[white] border flex w-[575px] mb-[5px] p-2.5 border-t-black border-b-black">
         <div>
-            <img className="w-[70px] h-[70px] justify-center rounded-[100%] border-solid border-[black] border-[1px]"
+            <img className="w-[50px] h-[50px] justify-center rounded-[100%] border-solid border-[black] border-[1px]"
                 src={answer.usersImage || user} alt="" />
         </div>
         <div className="basis-[250px] grow ml-[7px]">
-            <div className="font-bold text-[20px]">
+            <div className="font-bold text-[15px]">
                 {answer.answerName}
                 {/* <span className={styles.detailsBlock}>
                     <button className={styles.details}><img src={details} alt="details"/></button>

@@ -1,6 +1,6 @@
-import { FC, useState } from 'react';
-import AddNewPost from './AddNewPost/AddNewPost';
-import { FeedPostItemType, postItemType } from "../../../types/types";
+import { FC } from 'react';
+import { postItemType } from "../../../types/types";
+import CreatePost from '../../PostItem/addPost/CreatePost';
 import PostItem from '../../PostItem/PostItem';
 
 type Props = {
@@ -11,7 +11,7 @@ const Posts: FC<Props> = (props) => {
   return (
     <div>
       <div>
-        <AddNewPost />
+        <CreatePost />
       </div>
       <div className="flex flex-col items-center">
         {props.FeedPosts.map((post: postItemType) => <PostItem post={post} />)}
