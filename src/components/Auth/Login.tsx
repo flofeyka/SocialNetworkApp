@@ -15,7 +15,7 @@ type FormValues = {
 
 export default function Login() {
     const { register, handleSubmit } = useForm<FormValues>();
-    const captchaUrl = useSelector((state: RootState) => state.AuthPage.captchaUrl);
+    const captchaUrl = useSelector((state: RootState) => state.Auth.captchaUrl);
     const [openned, setOpen] = useState<boolean>(false);
 
     if (captchaUrl) {

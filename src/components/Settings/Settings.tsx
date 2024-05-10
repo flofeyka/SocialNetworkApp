@@ -8,7 +8,7 @@ import { setStatusProfile } from "../../redux/profileSlice";
 
 
 const Settings: React.FC = () => {
-    const [currentUserPhoto, status] = useSelector((state: RootState) => [state.AuthPage.currentProfileImage.large, state.ProfilePage.status])
+    const [currentUserPhoto, status] = useSelector((state: RootState) => [state.Auth.currentProfileImage.large, state.Profile.status])
 
     const [photo, setPhoto] = useState<File>();
     const dispatch = useAppDispatch();

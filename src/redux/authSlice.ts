@@ -116,7 +116,7 @@ export const getUserData = createAsyncThunk("auth/getData", async () => {
 export const getCurrentLogo = createAsyncThunk(
   "auth/usersData/getCurrentLogo",
   async (_, { getState }: any) => {
-    const userId = getState().AuthPage.userId;
+    const userId = getState().Auth.userId;
     const data = await ProfileAPI.getUserProfile(userId);
     return data.photos;
   }

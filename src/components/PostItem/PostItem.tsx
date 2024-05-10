@@ -38,7 +38,6 @@ const PostItem: FC<Props> = ({ post }) => {
           </div>
           <div className="text-[17px] mt-2.5">{post.postMessage}</div>
           <PostInterections
-            open={open}
             setOpen={(open: boolean) => setOpen(open)}
             postId={post.id}
             likesCount={post.likesCount}
