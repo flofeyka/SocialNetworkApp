@@ -5,7 +5,7 @@ import { getCurrentLogo } from "../../redux/authSlice";
 import { RootState, useAppDispatch } from "../../redux/store";
 
 export default function Feed() {
-    const [FeedPosts, userId] = useSelector((state: RootState) => [state.Posts.PostItem, state.AuthPage.userId]);
+    const [FeedPosts, userId] = useSelector((state: RootState) => [state.Posts.PostItem, state.Auth.userId]);
     const dispatch = useAppDispatch();
 
     useEffect(() => {

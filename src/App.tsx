@@ -23,7 +23,7 @@ const Settings = React.lazy(() => import("./components/Settings/Settings"));
 
 
 const App: React.FC = () => {
-    const [initialized, isAuth]: any = useSelector((state: RootState) => [state.App.initialized, state.AuthPage.isAuth]);
+    const [initialized, isAuth]: any = useSelector((state: RootState) => [state.App.initialized, state.Auth.isAuth]);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(initiliazeApp());

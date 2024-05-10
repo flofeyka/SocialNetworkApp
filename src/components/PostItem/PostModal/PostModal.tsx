@@ -2,7 +2,6 @@ import { FC } from "react";
 import AnswerItem from "../PostInterectionsBlock/Answers/AnswerItem";
 import AddingNewAnswer from "../PostInterectionsBlock/Answers/AddingNewAnswer/AddingNewAnswer";
 import user from "../../../assets/Profile/usersProfileIcon.png";
-import PostInterections from "../PostInterectionsBlock/PostInterections";
 import { answersType } from "../../../types/types";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
@@ -23,7 +22,7 @@ type Props = {
 
 const PostModal: FC<Props> = (props) => {
   const currentUserId = useSelector(
-    (state: RootState) => state.AuthPage.userId
+    (state: RootState) => state.Auth.userId
   );
   return (
     <div>
@@ -41,7 +40,7 @@ const PostModal: FC<Props> = (props) => {
                 </button>
               </div> */}
               <div className="flex">
-                <img
+                <img alt="usersIcon"
                   className="flex rounded-full w-[65px] h-[65px] flex"
                   src={props.usersPhoto || user}
                 />

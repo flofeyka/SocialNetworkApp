@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import PostItem from '../../PostItem/PostItem';
-import CreatePost from '../../PostItem/addPost/CreatePost';
+import CreatePost from '../../PostItem/CreatePost/CreatePost';
 
 const Posts: FC = () => {
     const postItem = useSelector((state: RootState) => state.Posts.PostItem);

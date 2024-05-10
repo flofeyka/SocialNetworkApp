@@ -1,7 +1,7 @@
 import { FC } from "react";
 import user from "../../../../../assets/Profile/usersProfileIcon.png";
 import { useSelector } from "react-redux";
-import { Button, Input, Textarea } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import { RootState, useAppDispatch } from "../../../../../redux/store";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -11,9 +11,9 @@ import { TextareaAutosize } from "@mui/material";
 
 const AddingNewAnswer: FC<{ postId: number }> = ({ postId }) => {
   const [currentUserId, name, image] = useSelector((state: RootState) => [
-    state.AuthPage.userId,
-    state.AuthPage.login,
-    state.AuthPage.currentProfileImage.large,
+    state.Auth.userId,
+    state.Auth.login,
+    state.Auth.currentProfileImage.large,
   ]);
   const dispatch = useAppDispatch();
 

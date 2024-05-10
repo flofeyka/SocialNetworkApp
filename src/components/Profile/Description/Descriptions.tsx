@@ -10,12 +10,12 @@ import { useSelector } from "react-redux";
 const Descriptions: FC<{ LinkedUserId: number }> = ({ LinkedUserId }) => {
     const [fullName, currentUsersPhoto, isFollowing, currentUserId, followingInProgress,
         profileStatus] = useSelector((state: RootState) => [
-            state.ProfilePage.profileData.fullName,
-            state.ProfilePage.profileData.photos.large,
-            state.ProfilePage.isFollowing,
-            state.AuthPage.userId,
-            state.ProfilePage.followingInProgress,
-            state.ProfilePage.status
+            state.Profile.profileData.fullName,
+            state.Profile.profileData.photos.large,
+            state.Profile.isFollowing,
+            state.Auth.userId,
+            state.Profile.followingInProgress,
+            state.Profile.status
         ]);
 
     const [editMode, setEditMode] = useState<boolean>(false);

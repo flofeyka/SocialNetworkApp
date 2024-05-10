@@ -1,5 +1,5 @@
 import { postItemType } from "../types/types";
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const feedSlice = createSlice({
   name: "feed",
