@@ -1,12 +1,13 @@
 import { FC } from "react";
 import user from "../../../../../assets/Profile/usersProfileIcon.png";
 import { useSelector } from "react-redux";
-import { Button, Input } from "@nextui-org/react";
+import { Button, Input, Textarea } from "@nextui-org/react";
 import { RootState, useAppDispatch } from "../../../../../redux/store";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { answerComment } from "../../../../../redux/postsSlice";
+import { TextareaAutosize } from "@mui/material";
 
 const AddingNewAnswer: FC<{ postId: number }> = ({ postId }) => {
   const [currentUserId, name, image] = useSelector((state: RootState) => [
@@ -47,17 +48,17 @@ const AddingNewAnswer: FC<{ postId: number }> = ({ postId }) => {
           />
         </span>
         <span>
-          <Input
+          <TextareaAutosize
             {...register("answerMessage", { required: true })}
-            className="text-[25px] rounded-[10px] mx-2"
+            className="text-[25px] ml-2 rounded-[10px] min-h-[40px] w-[335px] overflow-hidden border-[1px] border-[#808080] focus:border-[#0070f3] resize-none"
             autoFocus={true}
           />
         </span>
         <Button
-          type="submit"
-          className="w-[50px] h-10 rounded-[10px] border-[none] mx-4"
+          type="submit" variant="faded"
+          className="w-[50px] h-10 rounded-[10px] border-[none] mx-2 font-semibold"
         >
-          Send
+          Отправить
         </Button>
       </div>
     </form>
