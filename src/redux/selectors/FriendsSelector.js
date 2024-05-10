@@ -1,20 +1,20 @@
 export function getAllUsers(state) {
-    return state.FriendsPage.users;
+    return state.Friends.users;
 }
 
 export function getTotalUsersCount(state) {
-    return state.FriendsPage.totalUsersCount;
+    return state.Friends.totalUsersCount;
 }
 
 export function getPageSize(state) {
-    return state.FriendsPage.pageSize;
+    return state.Friends.pageSize;
 }
 
 export function getProgressInFollowing(state) {
-    return state.FriendsPage.followingInProgress;
+    return state.Friends.followingInProgress;
 }
 
 export function getCurrentPage(state) {
-    return state.FriendsPage.currentPage;
+    return state.Friends.currentPage;
 }
 

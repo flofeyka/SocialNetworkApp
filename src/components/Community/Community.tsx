@@ -5,7 +5,7 @@ import {RootState, useAppDispatch} from "../../redux/store";
 
 
 function Community() {
-    const Communities = useSelector((state: RootState) => state.CommunityPage.Communities);
+    const Communities = useSelector((state: RootState) => state.Community.Communities);
     const dispatch = useAppDispatch();
 
     return <div>
