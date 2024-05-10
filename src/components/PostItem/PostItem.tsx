@@ -46,10 +46,10 @@ const PostItem: FC<Props> = ({ post }) => {
                 </button>
               </span>
             </div>
-            <div className="text-[17px] mt-2.5" onClick={() => setOpen(true)}>
+            <div className="text-[17px] mt-2.5">
               {post.postMessage}
             </div>
-            <PostInterections
+            <PostInterections open={open} setOpen={(open: boolean) => setOpen(open)}
               postId={post.id}
               likesCount={post.likesCount}
               answerMode={answerMode}

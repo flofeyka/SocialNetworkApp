@@ -1,16 +1,16 @@
-import { FC, memo, useState } from 'react';
-import AddingNewPost from './Post/AddingNewPost/AddingNewPost';
+import { FC, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 import PostItem from '../../PostItem/PostItem';
+import CreatePost from '../../PostItem/addPost/CreatePost';
 
 const Posts: FC = () => {
-    const postItem = useSelector((state: RootState) => state.ProfilePage.PostItem);
+    const postItem = useSelector((state: RootState) => state.Posts.PostItem);
 
 
     const PostElem = [...postItem].reverse().map(post => <PostItem post={post}  />);
     return <div>
-        <AddingNewPost />
+        <CreatePost />
         <div>
             {PostElem}
         </div>

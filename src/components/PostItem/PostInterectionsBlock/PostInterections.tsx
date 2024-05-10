@@ -2,9 +2,11 @@ import React from 'react';
 import "./Interections.css";
 import { Button } from '@nextui-org/react';
 import { useAppDispatch } from '../../../redux/store';
-import { setLike } from '../../../redux/profileSlice';
+import { setLike } from '../../../redux/postsSlice';
 
 type Props = {
+    open: boolean
+    setOpen: (open: boolean) => void
     postId: number
     likesCount: number
     answerMode: boolean
@@ -17,15 +19,11 @@ function PostInterections(props: Props) {
     return <div className="interectionsBlock">
         <span>
             <span>
-                <Button size="sm" onClick={() => {
-                    dispatch(setLike(props.postId))
-                }}>Лайк {props.likesCount}</Button>
+                <Button size="sm" onClick={() => dispatch(setLike(props.postId))}>Лайк {props.likesCount}</Button>
             </span>
         </span>
         <span>
-            <Button size="sm" variant="faded" onClick={() => {
-                props.setAnswerMode(!props.answerMode ? true : false)
-            }}>Ответить</Button>
+            <Button size="sm" variant="faded" onClick={() => props.setOpen(true)}>Комментарии</Button>
         </span>
         <span>
             <Button size="sm">Поделиться</Button>

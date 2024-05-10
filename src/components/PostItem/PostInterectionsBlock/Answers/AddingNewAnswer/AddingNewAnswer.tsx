@@ -1,52 +1,67 @@
 import { FC } from "react";
 import user from "../../../../../assets/Profile/usersProfileIcon.png";
-import {useFormik} from "formik";
-import * as Yup from "yup";
 import { useSelector } from "react-redux";
 import { Button, Input } from "@nextui-org/react";
 import { RootState, useAppDispatch } from "../../../../../redux/store";
-import { answerComment } from "../../../../../redux/profileSlice";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+import { answerComment } from "../../../../../redux/postsSlice";
 
+const AddingNewAnswer: FC<{ postId: number }> = ({ postId }) => {
+  const [currentUserId, name, image] = useSelector((state: RootState) => [
+    state.AuthPage.userId,
+    state.AuthPage.login,
+    state.AuthPage.currentProfileImage.large,
+  ]);
+  const dispatch = useAppDispatch();
 
-const AddingNewAnswer: FC<{postId: number}> = ({postId}) => {
-    const [currentUserId, name, image] = useSelector((state: RootState) => [
-        state.AuthPage.userId,
-        state.AuthPage.login,
-        state.AuthPage.currentProfileImage.large
-    ])
-    const dispatch = useAppDispatch();
-    console.log(currentUserId, name, image)
+  const { register, handleSubmit, reset } = useForm<{ answerMessage: string }>({
+    resolver: yupResolver(
+      Yup.object().shape({
+        answerMessage: Yup.string().trim().required(),
+      })
+    ),
+  });
+  const onSubmit = (data: { answerMessage: string }) => {
+    dispatch(
+      answerComment({
+        id: postId,
+        userId: currentUserId,
+        name,
+        image,
+        message: data.answerMessage,
+      })
+    );
+    reset();
+  };
 
-    const formik = useFormik({
-        initialValues: {
-            answerMessage: ""
-        },
-        validationSchema: Yup.object().shape({
-            answerMessage: Yup.string().trim().required()
-        }),
-        onSubmit: values => {
-            dispatch(answerComment({
-                id: postId, userId: currentUserId, name,
-                image, message: values.answerMessage
-            }
-        ));
-            values.answerMessage = "";
-        }
-    })
-
-    return <form onSubmit={formik.handleSubmit}>
-        <div className="flex">
-            <span>
-            <img className="max-w-[40px] max-h-10 rounded-full"
-                 src={image || user} alt="" />
-            </span>
-            <span>
-                <Input name={"answerMessage"} className="text-[25px] rounded-[10px]" autoFocus={true}
-                       onChange={formik.handleChange} value={formik.values.answerMessage}/>
-            </span>
-            <Button type="submit" className="w-[50px] h-10 rounded-[10px] border-[none]">Send</Button>
-        </div>
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="flex">
+        <span>
+          <img
+            className="max-w-[40px] max-h-10 rounded-full"
+            src={image || user}
+            alt=""
+          />
+        </span>
+        <span>
+          <Input
+            {...register("answerMessage", { required: true })}
+            className="text-[25px] rounded-[10px] mx-2"
+            autoFocus={true}
+          />
+        </span>
+        <Button
+          type="submit"
+          className="w-[50px] h-10 rounded-[10px] border-[none] mx-4"
+        >
+          Send
+        </Button>
+      </div>
     </form>
-}
+  );
+};
 
 export default AddingNewAnswer;

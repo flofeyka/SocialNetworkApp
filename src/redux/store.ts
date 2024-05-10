@@ -7,6 +7,7 @@ import communitySlice from "./communitySlice";
 import appSlice from "./appSlice";
 import {configureStore} from "@reduxjs/toolkit";
 import {useDispatch} from "react-redux";
+import postsSlice from "./postsSlice";
 
 const store = configureStore({
     reducer: {
@@ -17,6 +18,7 @@ const store = configureStore({
         AuthPage: authSlice,
         CommunityPage: communitySlice,
         App: appSlice,
+        Posts: postsSlice
     }
 });
 

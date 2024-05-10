@@ -2,7 +2,7 @@ import {useDispatch} from "react-redux";
 import { Button } from "@nextui-org/react";
 import "../../Interections.css"
 import { FC } from "react";
-import { setLikeAnswer } from "../../../../../redux/profileSlice";
+import { setLikeAnswer } from "../../../../../redux/postsSlice";
 
 type Props = {
     answerId: number;

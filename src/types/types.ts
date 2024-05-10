@@ -53,7 +53,6 @@ export type profileType = {
     profileData: profileDataType | any
     currentUserId: number | null
     isFetching: boolean
-    PostItem: Array<postItemType>
     status: null | string
     isFollowing: null | boolean
     followingInProgress: null | boolean
@@ -103,19 +102,6 @@ export type DialogsItemType = {
 export type DialogsType = {
     Dialogs: Array<DialogsItemType>
     Messages: Array<MessagesType>
-}
-
-export type FeedPostItemType = {
-    id: number
-    fullName: string
-    usersPhoto: string | null
-    userId: number
-    postMessage: string
-    isReported: boolean
-}
-
-export type FeedsType = {
-    FeedPosts: Array<postItemType>
 }
 
 export type friendsItemType = {

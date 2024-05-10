@@ -47,19 +47,16 @@ const authSlice = createSlice({
       getUserData.fulfilled,
       (
         state,
-        action: PayloadAction<{
-          id: number;
-          login: string;
-          email: string;
-          resultCode: number;
-        }>
+        action: PayloadAction<{ resultCode: number; data: { id: number; login: string; email: string } }>
       ) => {
-        const { id, login, email } = action.payload;
+        if(action.payload.resultCode === 0) {
+        const { id, login, email } = action.payload.data;
         state.userId = id;
         state.login = login;
         state.email = email;
         state.isAuth = true;
         state.isFetching = false;
+        }
       }
     );
     builder.addCase(getUserData.pending, (state) => {
@@ -113,9 +110,7 @@ const authSlice = createSlice({
 
 export const getUserData = createAsyncThunk("auth/getData", async () => {
   const data = await AuthAPI.getUsersData();
-  if (data.resultCode === 0) {
-    return data.data;
-  }
+  return data;
 });
 
 export const getCurrentLogo = createAsyncThunk(
