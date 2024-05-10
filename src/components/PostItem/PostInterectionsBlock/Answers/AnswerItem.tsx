@@ -10,17 +10,15 @@ import { acceptAnswerChanges } from '../../../../redux/postsSlice';
 type Props = {
     answer: answersType
     currentUserId: number | null
-    answerMode: boolean
     postId: number
-    setAnswerMode: any
 }
 
-const AnswerItem: FC<Props> = ({ answer, currentUserId, answerMode, postId, setAnswerMode }) => {
+const AnswerItem: FC<Props> = ({ answer, currentUserId, postId }) => {
     const [editMode, setEditMode] = useState(false);
     const [answerMessage, setAnswerMessage] = useState(answer.answerMessage);
     const dispatch = useDispatch();
 
-    return <div key={answer.id} className="bg-[white] border flex w-[575px] mb-[5px] p-2.5 border-t-black border-b-black">
+    return <div key={answer.id} className="bg-[white] mb-1 mt-1 border-[none] flex w-[500px] mb-[5px] p-2.5 rounded-[15px]">
         <div>
             <img className="w-[50px] h-[50px] justify-center rounded-[100%] border-solid border-[black] border-[1px]"
                 src={answer.usersImage || user} alt="" />
@@ -41,13 +39,12 @@ const AnswerItem: FC<Props> = ({ answer, currentUserId, answerMode, postId, setA
                     setEditMode(false)
                 }}>Принять</button>
             </div> :
-                <div className="max-w-[500px] mt-[5px]">
+                <div className="max-w-[400px] mt-[5px]">
                     {answer.answerMessage}
                 </div>
             }
             <span>
-                <AnswerInterections answerMode={answerMode} setAnswerMode={setAnswerMode}
-                    answerId={answer.id} likesCount={answer.likesCount} postId={postId} />
+                <AnswerInterections answerId={answer.id} likesCount={answer.likesCount} postId={postId} />
             </span>
         </div>
     </div>
