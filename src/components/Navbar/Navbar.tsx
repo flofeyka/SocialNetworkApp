@@ -16,9 +16,9 @@ import {RootState, useAppDispatch} from "../../redux/store";
 
 function Navbar() {
     const [usersPhoto, fullName, userId] = useSelector((state: RootState) => [
-        state.AuthPage.currentProfileImage.small,
-        state.AuthPage.login,
-        state.AuthPage.userId
+        state.Auth.currentProfileImage.small,
+        state.Auth.login,
+        state.Auth.userId
     ]);
 
     const dispatch = useAppDispatch();

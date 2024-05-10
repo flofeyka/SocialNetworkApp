@@ -1,5 +1,5 @@
 import { ProfileAPI, followAPI } from "../API/api";
-import { postItemType, profileDataType, profileType } from "../types/types";
+import { profileDataType, profileType } from "../types/types";
 import { ActionReducerMapBuilder, PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const profileSlice = createSlice({

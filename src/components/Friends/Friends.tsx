@@ -9,11 +9,11 @@ import { friendsItemType } from "../../types/types";
 
 const Friends:FC = () => {
     const [users, totalUsersCount, pageSize, followingInProgress, currentPage] = useSelector((state: RootState) => [
-        state.FriendsPage.users,
-        state.FriendsPage.totalUsersCount,
-        state.FriendsPage.pageSize,
-        state.FriendsPage.followingInProgress,
-        state.FriendsPage.currentPage
+        state.Friends.users,
+        state.Friends.totalUsersCount,
+        state.Friends.pageSize,
+        state.Friends.followingInProgress,
+        state.Friends.currentPage
     ]);
     const dispatch = useAppDispatch();
 

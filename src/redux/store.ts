@@ -11,12 +11,12 @@ import postsSlice from "./postsSlice";
 
 const store = configureStore({
     reducer: {
-        MsgPage: dialogsSlice,
-        ProfilePage: profileSlice,
-        FeedPage: feedSlice,
-        FriendsPage: friendsSlice,
-        AuthPage: authSlice,
-        CommunityPage: communitySlice,
+        Messanger: dialogsSlice,
+        Profile: profileSlice,
+        Feed: feedSlice,
+        Friends: friendsSlice,
+        Auth: authSlice,
+        Community: communitySlice,
         App: appSlice,
         Posts: postsSlice
     }

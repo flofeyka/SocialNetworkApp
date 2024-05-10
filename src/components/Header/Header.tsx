@@ -9,9 +9,9 @@ import "../../App.css";
 
 export default function Header() {
     const [isAuth, login, userId] = useSelector((state: RootState) => [
-        state.AuthPage.isAuth,
-        state.AuthPage.login,
-        state.AuthPage.userId
+        state.Auth.isAuth,
+        state.Auth.login,
+        state.Auth.userId
     ]);
     const dispatch = useAppDispatch();
 

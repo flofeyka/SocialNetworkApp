@@ -13,9 +13,9 @@ const CreatePost: FC = () => {
     const dispatch = useAppDispatch();
     const [fullName, currentProfileImage, userId] = useSelector((state: RootState) => 
         [
-            state.AuthPage.login, 
-            state.AuthPage.currentProfileImage.small,
-            state.AuthPage.userId
+            state.Auth.login, 
+            state.Auth.currentProfileImage.small,
+            state.Auth.userId
         ]
     );
 

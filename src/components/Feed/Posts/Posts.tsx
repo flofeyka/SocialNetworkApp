@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { postItemType } from "../../../types/types";
-import CreatePost from '../../PostItem/addPost/CreatePost';
+import CreatePost from '../../PostItem/CreatePost/CreatePost';
 import PostItem from '../../PostItem/PostItem';
 
 type Props = {
