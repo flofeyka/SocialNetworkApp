@@ -1,16 +1,9 @@
-import { useEffect } from "react"
 import Posts from "./Posts/Posts";
 import { useSelector } from "react-redux";
-import { getCurrentLogo } from "../../redux/authSlice";
-import { RootState, useAppDispatch } from "../../redux/store";
+import { RootState } from "../../redux/store";
 
 export default function Feed() {
-    const [FeedPosts, userId] = useSelector((state: RootState) => [state.Posts.PostItem, state.Auth.userId]);
-    const dispatch = useAppDispatch();
-
-    useEffect(() => {
-        dispatch(getCurrentLogo());
-    }, [userId, dispatch]);
+    const FeedPosts = useSelector((state: RootState) => state.Posts.FeedPosts);
 
     return (
         <div className="text-xl cursor-pointer m-[15px]">

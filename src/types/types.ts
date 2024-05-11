@@ -122,5 +122,8 @@ export type FriendsType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: Array<any>
-    
+    filter: {
+        term: string
+        friend: null | boolean
+    }
 }

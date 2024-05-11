@@ -6,20 +6,33 @@ import SearchBoxFriends from "./SearchFriends/SearchBox";
 import { Pagination } from "antd";
 import { RootState, useAppDispatch } from "../../redux/store";
 import { friendsItemType } from "../../types/types";
+import { useNavigate } from 'react-router-dom';
 
 const Friends:FC = () => {
-    const [users, totalUsersCount, pageSize, followingInProgress, currentPage] = useSelector((state: RootState) => [
+    const [users, totalUsersCount, pageSize, followingInProgress, currentPage, filter] = useSelector((state: RootState) => [
         state.Friends.users,
         state.Friends.totalUsersCount,
         state.Friends.pageSize,
         state.Friends.followingInProgress,
-        state.Friends.currentPage
+        state.Friends.currentPage,
+        state.Friends.filter
     ]);
     const dispatch = useAppDispatch();
 
-    useEffect(() => {
-        dispatch(getUsers({ currentPage: +currentPage }));
-    }, [dispatch, currentPage]);
+    const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate({
+      pathname: "/users",
+      search: `?term=${filter.term}&friend=${filter.friend}`,
+    });
+  }, [filter]);
+
+  useEffect(() => {
+    dispatch(
+      getUsers({currentPage: +currentPage, filter })
+    );
+  }, [dispatch, currentPage, filter]);
 
     return (
         <div className="text-xl flex flex-col items-center">
@@ -29,7 +42,7 @@ const Friends:FC = () => {
                 }} current={+currentPage} pageSize={+pageSize} showSizeChanger={false} />
             </div>
             <div>
-                <SearchBoxFriends />
+                <SearchBoxFriends filter={filter}/>
             </div>
             <div>
                 {Array.isArray(users) && users.map((user: friendsItemType) => {
