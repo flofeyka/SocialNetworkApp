@@ -1,7 +1,7 @@
 import { FC, memo, useState } from 'react';
 import user from "../../../../assets/Profile/usersProfileIcon.png";
 import { useDispatch } from "react-redux";
-import AnswerInterections from "./AnswerInterectionsBlock/AnswerInterections";
+import AnswerInterections from "./CommentsInterectionsBlock/CommentsInterections";
 import { answersType } from '../../../../types/types';
 import { acceptAnswerChanges } from '../../../../redux/postsSlice';
 // import details from "../../../../../../assets/AdditionalyPhoto.png"
@@ -13,7 +13,7 @@ type Props = {
     postId: number
 }
 
-const AnswerItem: FC<Props> = ({ answer, currentUserId, postId }) => {
+const CommentsItem: FC<Props> = ({ answer, currentUserId, postId }) => {
     const [editMode, setEditMode] = useState(false);
     const [answerMessage, setAnswerMessage] = useState(answer.answerMessage);
     const dispatch = useDispatch();
@@ -50,4 +50,4 @@ const AnswerItem: FC<Props> = ({ answer, currentUserId, postId }) => {
     </div>
 }
 
-export default memo(AnswerItem);
+export default memo(CommentsItem);

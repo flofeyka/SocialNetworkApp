@@ -9,7 +9,7 @@ import * as Yup from "yup";
 import { answerComment } from "../../../../../redux/postsSlice";
 import { TextareaAutosize } from "@mui/material";
 
-const AddingNewAnswer: FC<{ postId: number }> = ({ postId }) => {
+const AddComment: FC<{ postId: number }> = ({ postId }) => {
   const [currentUserId, name, image] = useSelector((state: RootState) => [
     state.Auth.userId,
     state.Auth.login,
@@ -65,4 +65,4 @@ const AddingNewAnswer: FC<{ postId: number }> = ({ postId }) => {
   );
 };
 
-export default AddingNewAnswer;
+export default AddComment;

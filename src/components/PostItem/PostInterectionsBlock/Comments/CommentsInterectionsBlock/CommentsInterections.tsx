@@ -10,7 +10,7 @@ type Props = {
     likesCount: number;
 }
 
-const AnswerInterections: FC<Props> = (props) => {
+const CommentsInterections: FC<Props> = (props) => {
     const dispatch = useDispatch();
     return <div className="interectionsBlock">
         <span>
@@ -27,4 +27,4 @@ const AnswerInterections: FC<Props> = (props) => {
     </div>
 }
 
-export default AnswerInterections;
+export default CommentsInterections;

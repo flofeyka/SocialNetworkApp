@@ -11,9 +11,16 @@ const friendsSlice = createSlice({
         totalUsersCount: 0,
         currentPage: 1,
         isFetching: true,
+        filter: {
+            term: '',
+            friend: null as null | boolean
+        },
         followingInProgress: [] as Array<number>
     } as FriendsType,
     reducers: {
+        setFilter(state, action: PayloadAction<{ term: string, friend: null | boolean }>) {
+            state.filter = action.payload
+        },
         setCurrentPage: (state, action: PayloadAction<number>) => {
             state.currentPage = action.payload;
         },
@@ -58,10 +65,10 @@ const friendsSlice = createSlice({
     }
 });
 
-export const { setCurrentPage, ToggleIsFetching } = friendsSlice.actions;
+export const { setCurrentPage, ToggleIsFetching, setFilter } = friendsSlice.actions;
 
-export const getUsers = createAsyncThunk('friends/getUsers', async (payload: any) => {
-    const data = await UsersAPI.getUsers(payload.currentPage, 52, payload.term);
+export const getUsers = createAsyncThunk('friends/getUsers', async (payload: { currentPage: number, filter: { term: string, friend: boolean | null } }) => {
+    const data = await UsersAPI.getUsers(payload.currentPage, 52, payload.filter.term, payload.filter.friend);
     return data;
 })
 

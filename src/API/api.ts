@@ -17,9 +17,8 @@ export const followAPI = {
 }
 
 export const UsersAPI = {
-    async getUsers(currentPage: number = 1, pageSize: number = 10, term: string = "") {
-        const Response = await instance.get(`users?page=${currentPage}&count=${pageSize}&term=${term}`);
-        console.log(Response.data);
+    async getUsers(currentPage: number = 1, pageSize: number = 10, term: string = "", friend: boolean | null = null) {
+        const Response = await instance.get(`users?page=${currentPage}&count=${pageSize}&term=${term}&friend=${friend}`);
         return Response.data;
     },
 };

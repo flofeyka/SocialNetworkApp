@@ -5,11 +5,12 @@ const postsSlice = createSlice({
     name: "posts", 
     initialState: {
         PostItem: [] as Array<postItemType>,
+        FeedPosts: [] as Array<postItemType>
     },
     reducers: {
         addPost: (state, action) => {
             let { userId, fullName, currentProfileImage, NewPostMessage } = action.payload
-            state.PostItem.push({
+            const newPost = {
                 id: state.PostItem.length + 1,
                 userId: userId,
                 fullName: fullName,
@@ -18,7 +19,9 @@ const postsSlice = createSlice({
                 likesCount: 0,
                 isLiked: false,
                 answers: []
-            })
+            }
+            state.PostItem.push(newPost);
+            state.FeedPosts.push(newPost);
         },
         answerComment: (state, action) => {
             const { id, name, image, userId, message } = action.payload
