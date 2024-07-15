@@ -1,5 +1,5 @@
 import { followAPI, UsersAPI } from "../API/api";
-import { friendsItemType, FriendsType } from "../types/types";
+import { FilterFriendsType, friendsItemType, FriendsType } from "../types/types";
 import { ActionReducerMapBuilder, createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const friendsSlice = createSlice({
@@ -12,9 +12,9 @@ const friendsSlice = createSlice({
         currentPage: 1,
         isFetching: true,
         filter: {
-            term: '',
+            term: '' as string,
             friend: null as null | boolean
-        },
+        } as FilterFriendsType,
         followingInProgress: [] as Array<number>
     } as FriendsType,
     reducers: {
@@ -67,8 +67,9 @@ const friendsSlice = createSlice({
 
 export const { setCurrentPage, ToggleIsFetching, setFilter } = friendsSlice.actions;
 
-export const getUsers = createAsyncThunk('friends/getUsers', async (payload: { currentPage: number, filter: { term: string, friend: boolean | null } }) => {
-    const data = await UsersAPI.getUsers(payload.currentPage, 52, payload.filter.term, payload.filter.friend);
+export const getUsers = createAsyncThunk('friends/getUsers', async (payload: { currentPage: number, filter: FilterFriendsType}) => {
+    const {currentPage, filter} = payload;
+    const data = await UsersAPI.getUsers(currentPage, 52, filter.term, filter.friend);
     return data;
 })
 

@@ -115,6 +115,11 @@ export type friendsItemType = {
     followed: boolean;
 }
 
+export type FilterFriendsType = {
+    term: string;
+    friend: null | boolean;
+}
+
 export type FriendsType = {
     users: Array<friendsItemType>
     pageSize: number
@@ -122,8 +127,5 @@ export type FriendsType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: Array<any>
-    filter: {
-        term: string
-        friend: null | boolean
-    }
+    filter: FilterFriendsType
 }

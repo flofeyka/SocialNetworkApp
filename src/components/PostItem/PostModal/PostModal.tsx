@@ -1,6 +1,6 @@
 import { FC } from "react";
-import AnswerItem from "../PostInterectionsBlock/Answers/CommentsItem";
-import AddingNewAnswer from "../PostInterectionsBlock/Answers/AddComment/AddComment";
+import AnswerItem from "../PostInterectionsBlock/Comments/CommentsItem";
+import AddingNewAnswer from "../PostInterectionsBlock/Comments/AddComment/AddComment";
 import user from "../../../assets/Profile/usersProfileIcon.png";
 import { answersType } from "../../../types/types";
 import { useSelector } from "react-redux";

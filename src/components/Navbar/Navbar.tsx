@@ -52,7 +52,7 @@ function Navbar() {
                 Видео
             </button>
         </NavLink>
-        <NavLink to={"/Friends"}>
+        <NavLink to={"/friends"}>
             <button>
                 <img src={friends} alt="Friends"/>
                 Друзья

@@ -20,7 +20,7 @@ const authSlice = createSlice({
   } as authType,
   reducers: {},
   extraReducers(builder) {
-    builder.addCase(LoginSystem.fulfilled, (state, action) => {
+    builder.addCase(LoginSystem.fulfilled, (state: authType, action) => {
       if (action.payload.resultCode === 0) {
         state.isAuth = true;
         [state.userId, state.login, state.email] = [
@@ -37,7 +37,7 @@ const authSlice = createSlice({
     builder.addCase(
       getCurrentLogo.fulfilled,
       (
-        state,
+        state: authType,
         action: PayloadAction<{ small: string | null; large: string | null }>
       ) => {
         state.currentProfileImage = action.payload;
@@ -46,7 +46,7 @@ const authSlice = createSlice({
     builder.addCase(
       getUserData.fulfilled,
       (
-        state,
+        state: authType,
         action: PayloadAction<{ resultCode: number; data: { id: number; login: string; email: string } }>
       ) => {
         if(action.payload.resultCode === 0) {
@@ -59,24 +59,24 @@ const authSlice = createSlice({
         }
       }
     );
-    builder.addCase(getUserData.pending, (state) => {
+    builder.addCase(getUserData.pending, (state: authType) => {
       state.isFetching = true;
     });
     builder.addCase(
       getUserData.rejected,
-      (state, action: PayloadAction<any>) => {
-        state.errorMessage = action.payload.message;
+      (state: authType, action: PayloadAction<any>) => {
+        state.errorMessage = action.payload?.message;
       }
     );
     builder.addCase(
       getCaptchaUrl.fulfilled,
-      (state, action: PayloadAction<string>) => {
+      (state: authType, action: PayloadAction<string>) => {
         state.captchaUrl = action.payload;
       }
     );
     builder.addCase(
       LogOutSystem.fulfilled,
-      (state, action: PayloadAction<boolean>) => {
+      (state: authType, action: PayloadAction<boolean>) => {
         if (action) {
           state.isAuth = false;
           state.userId = null;
@@ -94,7 +94,7 @@ const authSlice = createSlice({
     builder.addCase(
       setNewCurrentUsersPhoto.fulfilled,
       (
-        state,
+        state: authType,
         action: PayloadAction<{
           resultCode: number;
           photos: { small: string | null; large: string | null };

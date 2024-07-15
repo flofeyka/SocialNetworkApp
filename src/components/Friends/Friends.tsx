@@ -9,7 +9,7 @@ import { friendsItemType } from "../../types/types";
 import { useNavigate } from 'react-router-dom';
 
 const Friends:FC = () => {
-    const [users, totalUsersCount, pageSize, followingInProgress, currentPage, filter] = useSelector((state: RootState) => [
+    const [users, totalUsersCount, pageSize, followingInProgress, currentPage, filter] = useSelector((state: any) => [
         state.Friends.users,
         state.Friends.totalUsersCount,
         state.Friends.pageSize,
@@ -21,12 +21,12 @@ const Friends:FC = () => {
 
     const navigate = useNavigate();
 
-  useEffect(() => {
-    navigate({
-      pathname: "/users",
-      search: `?term=${filter.term}&friend=${filter.friend}`,
-    });
-  }, [filter]);
+  // useEffect(() => {
+  //   navigate({
+  //     pathname: "/users",
+  //     search: `?term=${filter.term}&friend=${filter.friend}`,
+  //   });
+  // }, [filter]);
 
   useEffect(() => {
     dispatch(

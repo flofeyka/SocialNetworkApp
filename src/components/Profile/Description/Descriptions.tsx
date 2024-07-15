@@ -29,7 +29,7 @@ const Descriptions: FC<{ LinkedUserId: number }> = ({ LinkedUserId }) => {
     }, [LinkedUserId, isFollowing, profileStatus, dispatch]);
 
 
-    return <div className="apply align-top text-xl flex flex-wrap p-6 justify-center bg-[white] p-[15px] rounded-[15px] shadow-xl">
+    return <div className="apply align-top text-xl flex flex-wrap p-6 justify-center bg-[white] p-[15px] py-[25px] rounded-[15px] shadow-xl">
         <div className="w-[150px]">
             <img className="w-[130px] h-[130px] rounded-full" src={currentUsersPhoto || user} alt="" />
             <span>
@@ -38,8 +38,8 @@ const Descriptions: FC<{ LinkedUserId: number }> = ({ LinkedUserId }) => {
                     followingInProgress={followingInProgress} /> : null}
             </span>
         </div>
-        <div className="basis-[250px] grow-[2] mt-[-5px] ml-[15px] hover:transition-all">
-            <div className="text-[35px] font-bold inline align-top mb-2.5">
+        <div className="basis-[250px] grow-[2] -mt-1.5 hover:transition-all">
+            <div className="text-4xl font-bold inline align-top mb-2.5">
                 {fullName}
             </div>
             <span>

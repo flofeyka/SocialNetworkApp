@@ -25,52 +25,52 @@ export const UsersAPI = {
 
 export const ProfileAPI = {
     async getUserProfile(userId : number) {
-        const Response = await instance.get(`profile/${userId}`);
-        return Response.data;
+        const {data} = await instance.get(`profile/${userId}`);
+        return data;
     }, async getProfileStatus(userId : number) {
-        const Response = await instance.get(`profile/status/${userId}`);
-        return Response.data;
+        const {data} = await instance.get(`profile/status/${userId}`);
+        return data;
     }, async setProfileStatus(status : string | null) {
-        const Response = await instance.put("profile/status", {status});
-        return Response.data;
+        const {data} = await instance.put("profile/status", {status});
+        return data;
     }, async getFollowingData(userId : number) {
-        const Response = await instance.get(`follow/${userId}`);
-        return Response.data;
-    }, async editProfileData(data : profileDataType) {
-        const Response = await instance.put("profile", data);
-        return Response.data;
+        const {data} = await instance.get(`follow/${userId}`);
+        return data;
+    }, async editProfileData(profileData : profileDataType) {
+        const {data} = await instance.put("profile", profileData);
+        return data;
     }
 };
 
 export const AuthAPI = {
     async getUsersData() {
-        const Response = await instance.get("auth/me");
-        return Response.data;
+        const {data} = await instance.get("auth/me");
+        return data;
     }, 
     async Login(email : string, password : string , rememberMe : boolean = false, captcha : string | null = null) {
-        const Response = await instance.post("auth/login", {email, password, rememberMe, captcha});
-        return Response.data;
+        const {data} = await instance.post("auth/login", {email, password, rememberMe, captcha});
+        return data;
     }, 
     async LogOut() {
-        const Response = await instance.delete("auth/login");
-        return Response.data;
+        const {data} = await instance.delete("auth/login");
+        return data;
     }, async setCurrentPhoto(photo: File) {
         let formData = new FormData();
         formData.append("image", photo);
         
-        const Response = await instance.put("profile/photo", formData, {
+        const {data} = await instance.put("profile/photo", formData, {
             headers: {
                 "Content-Type": "multipart/form-data"
             }
         });
 
-        return Response.data;
+        return data;
     }
 };
 
 export const SecurityAPI = {
     async getCaptcha() {
-        const Response = await instance.get("security/get-captcha-url");
-        return Response.data;
+        const {data} = await instance.get("security/get-captcha-url");
+        return data;
     }
 }

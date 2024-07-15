@@ -35,7 +35,7 @@ const App: React.FC = () => {
         return <Suspense fallback={<InitializationPage />}>
             <div className="AuthContainer">
                 <Routes>
-                    <Route path='*' element={<Navigate to="/auth" />} />
+                    <Route path='*' element={<Navigate to="/login" />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/register' element={<Register />} />
                 </Routes>
